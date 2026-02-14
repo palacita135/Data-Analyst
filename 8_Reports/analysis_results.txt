@@ -1,0 +1,55 @@
+=== Portugal Real Estate Analysis (Last 6 Months) ===
+
+Analysis Period: 2024-07-28 to 2025-01-28
+Total Listings Analyzed: 18911
+
+--- 1. Average Price Trend ---
+Month
+2024-07    397702.200000
+2024-08    348997.048226
+2024-09    371614.340112
+2024-10    375024.865520
+2024-11    362626.702673
+2024-12    400270.903732
+2025-01    386734.918673
+Freq: M
+
+--- 2. Top 5 Districts by Price (ROI Potential) ---
+District
+Faro                    590123.839468
+Lisboa                  534049.797956
+Z - Fora De Portugal    531666.666667
+Setúbal                 389179.767196
+Porto                   360996.870514
+
+--- 3. Property Type Popularity ---
+Type
+Apartment    48.178309
+House        26.889112
+Land         13.965417
+Store         3.066998
+Farm          1.623394
+
+--- 4. Condition Impact (New vs Used) ---
+Condition column missing.
+
+--- 5. Luxury Market (Top 10%) ---
+Luxury Threshold: > €750,000.00
+Top Luxury Districts:
+District
+Lisboa    1017
+Porto      285
+Faro       219
+
+--- 6. Highest Supply (New Listings) ---
+District
+Lisboa     5187
+Porto      4263
+Setúbal    1890
+Braga      1519
+Aveiro     1004
+
+--- 7. Parking Premium ---
+Price with Parking: €482,303.78
+Price without: €316,040.87
+Premium: 52.6%

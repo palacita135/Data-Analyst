@@ -1,0 +1,307 @@
+Date,Receipt number,Receipt type,Category,SKU,Item,Variant,Modifiers applied,Quantity,Gross sales,Discounts,Net sales,Cost of goods,Gross profit,Taxes,Dining option,POS,Store,Cashier name,Customer name,Customer contacts,Comment,Status,Day,Month,Year,Days Number,Weekend/Weekday
+2024-09-21 13:43:59.808,9406-02-01 00:00:00,Sale,Kudapan,10011,Kentang Goreng,,,2,50476,0,50476,0,50476,2524,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-29 12:47:00.096,9541-02-01 00:00:00,Sale,Roti,10005,Roti Gandum Cokelat,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-05 19:18:59.904,9076-02-01 00:00:00,Refund,Kudapan,10051,Tahu baso,,,-1,-25238,0,-25238,0,-25238,-1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-15 16:32:59.712,9316-02-01 00:00:00,Sale,Roti,10005,Roti Gandum Cokelat,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-08 17:05:00.384,9166-02-01 00:00:00,Sale,Roti,10000,Roti Bawang Saus Keju,,,1,29524,0,29524,0,29524,1476,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-12 13:25:59.808,9219-02-01 00:00:00,Sale,Kudapan,10009,Jamur Enoki Krispi,,,1,26667,0,26667,0,26667,1333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-18 14:50:00.384,9361-02-01 00:00:00,Sale,Minuman,10067,Wedang angin,,,1,24762,0,24762,0,24762,1238,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-01 13:25:59.808,8983-02-01 00:00:00,Sale,Minuman,10106,Korean Strawberry Fresh Milk,,,1,26667,0,26667,0,26667,1333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-06 10:39:59.616,9088-02-01 00:00:00,Sale,Promo,10021,(Voucher Gratis) Roti Gandum Coklat,,,1,0,0,0,0,0,0,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-07 15:53:00.384,9109-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-01 13:27:59.904,8984-02-01 00:00:00,Sale,Roti,10033,Roti panggang sarikaya,,,1,21905,0,21905,0,21905,1096,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-11 19:03:59.616,9207-02-01 00:00:00,Sale,Minuman,10107,Korean Mango Fresh Milk,,,1,26667,0,26667,0,26667,1333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-21 17:44:59.712,9417-02-01 00:00:00,Sale,Minuman,10118,Teh Tawar Panas,,,1,7143,0,7143,0,7143,357,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-01 14:26:00.096,8987-02-01 00:00:00,Sale,Minuman,10069,Wedang hujan,,,1,24762,0,24762,0,24762,1238,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-17 09:22:59.808,9334-02-01 00:00:00,Sale,Minuman,10122,Rempah Madu Panas,,,1,21905,0,21905,0,21905,1095,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-05 19:18:59.904,9077-02-01 00:00:00,Sale,Kudapan,10051,Tahu baso,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-14 16:36:00.288,9284-02-01 00:00:00,Sale,Kudapan,10051,Tahu baso,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-29 17:15:00.000,9555-02-01 00:00:00,Sale,Minuman,10070,Wedang laut,,,1,24762,0,24762,0,24762,1239,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-29 14:35:00.096,9548-02-01 00:00:00,Refund,Roti,10007,Roti cranberry 2 pcs,,,-1,-33810,0,-33810,0,-33810,-1691,Take Away,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-27 11:50:00.384,9480-02-01 00:00:00,Sale,Kudapan,10051,Tahu baso,,,1,25238,0,25238,0,25238,1261,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-08 10:11:00.384,9146-02-01 00:00:00,Sale,Minuman,10122,Rempah Madu Panas,,,1,21905,0,21905,0,21905,1096,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-22 13:27:59.904,9435-02-01 00:00:00,Sale,Minuman,10013,Kopi cur,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-28 18:51:59.904,9524-02-01 00:00:00,Sale,Kudapan,10014,Tempe Mendoan,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-18 16:34:59.808,9367-02-01 00:00:00,Sale,Kudapan,10051,Tahu baso,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-08 12:20:59.712,9149-02-01 00:00:00,Sale,Hidangan Utama,10003,Nasi Goreng Temu,,,1,29524,0,29524,0,29524,1476,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-29 12:51:59.904,9542-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-03 20:10:00.192,9033-02-01 00:00:00,Sale,Minuman,10107,Korean Mango Fresh Milk,,,1,26667,0,26667,0,26667,1333,Take Away,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-07 09:47:00.096,9102-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,2,46666,0,46666,0,46666,2333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-21 11:12:00.288,9398-02-01 00:00:00,Sale,Minuman,10067,Wedang angin,,,3,74286,0,74286,0,74286,3714,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-10 20:01:59.808,9193-02-01 00:00:00,Sale,Minuman,10122,Rempah Madu Panas,,,1,21905,0,21905,0,21905,1095,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-18 14:28:59.808,9360-02-01 00:00:00,Sale,Minuman,10069,Wedang hujan,,,1,24762,0,24762,0,24762,1238,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-22 13:48:59.616,9437-02-01 00:00:00,Sale,Roti,10007,Roti cranberry 2 pcs,,,1,33810,0,33810,0,33810,1691,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-08 10:11:00.384,9146-02-01 00:00:00,Sale,Kudapan,10011,Kentang Goreng,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-18 12:15:59.904,9355-02-01 00:00:00,Sale,Minuman,10069,Wedang hujan,,,1,24762,0,24762,0,24762,1238,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-14 10:48:00.000,9258-02-01 00:00:00,Sale,Roti,10055,Roti Gandum Cokelat 2 pcs,,,1,34762,0,34762,0,34762,1738,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-14 13:11:00.384,9267-02-01 00:00:00,Sale,Hidangan Utama,10105,Beef Claypot Rice,,,1,38095,0,38095,0,38095,1905,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-12 09:49:59.808,9210-02-01 00:00:00,Sale,Minuman,10127,Kopi Tubruk Panas,,,1,18571,0,18571,0,18571,928,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-15 16:32:59.712,9316-02-01 00:00:00,Sale,Minuman,10107,Korean Mango Fresh Milk,,,1,26667,0,26667,0,26667,1333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-07 20:55:00.192,9137-02-01 00:00:00,Sale,Kudapan,10051,Tahu baso,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-01 14:42:59.616,8990-02-01 00:00:00,Sale,Minuman,10125,Gula Asam Dingin,,,1,20476,0,20476,0,20476,1024,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-14 14:26:00.096,9274-02-01 00:00:00,Sale,Minuman,10121,Lemon Tea Dingin,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-12 09:49:59.808,9210-02-01 00:00:00,Sale,Roti,10005,Roti Gandum Cokelat,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-07 19:20:00.384,9130-02-01 00:00:00,Sale,Kudapan,10014,Tempe Mendoan,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-10 09:38:59.712,9184-02-01 00:00:00,Sale,Roti,10055,Roti Gandum Cokelat 2 pcs,,,1,34762,0,34762,0,34762,1738,Take Away,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-22 13:27:59.904,9435-02-01 00:00:00,Sale,Roti,10005,Roti Gandum Cokelat,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-26 12:13:00.192,9470-02-01 00:00:00,Sale,Roti,10005,Roti Gandum Cokelat,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-29 14:10:00.192,9546-02-01 00:00:00,Refund,Roti,10055,Roti Gandum Cokelat 2 pcs,,,-2,-69524,0,-69524,0,-69524,-3477,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-08 09:45:59.616,9144-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-08 09:13:59.808,9143-02-01 00:00:00,Sale,Kudapan,10015,Tahu Lada Garam,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-05 19:47:00.384,9082-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-26 12:45:00.000,9471-02-01 00:00:00,Sale,Hidangan Utama,10012,Mie joglo,,,1,29524,0,29524,0,29524,1477,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-22 10:29:00.384,9429-02-01 00:00:00,Sale,Roti,10007,Roti cranberry 2 pcs,,,1,33810,0,33810,0,33810,1691,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-24 19:11:00.384,9457-02-01 00:00:00,Refund,Minuman,10026,Es Kopi Lemon,,,-1,-21905,0,-21905,0,-21905,-1095,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-22 21:02:00.096,9445-02-01 00:00:00,Sale,Minuman,10112,Air mineral,,,1,6667,0,6667,0,6667,333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-24 16:57:00.000,9453-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-21 10:50:00.096,9397-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,928,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-29 14:35:00.096,9548-02-01 00:00:00,Refund,Minuman,10013,Kopi cur,,,-1,-23333,0,-23333,0,-23333,-1166,Take Away,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-15 18:22:59.808,9330-02-01 00:00:00,Sale,Minuman,10120,Lemon Tea Panas,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-08 17:19:59.808,9171-02-01 00:00:00,Sale,Minuman,10117,Teh Manis Dingin,,,1,14286,0,14286,0,14286,714,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-07 17:41:00.384,9120-02-01 00:00:00,Sale,Minuman,10112,Air mineral,,,1,6667,0,6667,0,6667,333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-14 16:30:00.000,9281-02-01 00:00:00,Sale,Kudapan,10010,Pisang Goreng,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-19 13:29:00.384,9372-02-01 00:00:00,Sale,Minuman,10112,Air mineral,,,2,13334,0,13334,0,13334,667,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-29 17:33:59.616,9557-02-01 00:00:00,Sale,Minuman,10120,Lemon Tea Panas,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-18 09:27:00.000,9352-02-01 00:00:00,Sale,Minuman,10106,Korean Strawberry Fresh Milk,,,1,26667,0,26667,0,26667,1333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-21 15:17:00.384,9409-02-01 00:00:00,Sale,Hidangan Utama,10053,Nasi telor,,,2,50476,0,50476,0,50476,2524,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-13 18:49:00.192,9249-02-01 00:00:00,Sale,Hidangan Utama,10003,Nasi Goreng Temu,,,2,59048,0,59048,0,59048,2952,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-10 17:44:00.096,9191-02-01 00:00:00,Sale,Kudapan,10004,Tahu walik,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-05 16:47:00.384,9069-02-01 00:00:00,Sale,Roti,10055,Roti Gandum Cokelat 2 pcs,,,1,34762,0,34762,0,34762,1738,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-05 19:18:00.288,9075-02-01 00:00:00,Sale,Kudapan,10010,Pisang Goreng,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-28 12:38:00.096,9504-02-01 00:00:00,Sale,Roti,10000,Roti Bawang Saus Keju,,,1,29524,0,29524,0,29524,1476,Take Away,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-14 11:21:59.904,9261-02-01 00:00:00,Sale,Roti,10000,Roti Bawang Saus Keju,,,1,29524,0,29524,0,29524,1477,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-22 13:09:00.288,9434-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,2,46666,0,46666,0,46666,2333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-22 18:42:59.904,9442-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-21 19:59:00.096,9423-02-01 00:00:00,Sale,Minuman,10107,Korean Mango Fresh Milk,,,1,26667,0,26667,0,26667,1333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-27 12:20:59.712,9482-02-01 00:00:00,Sale,Minuman,10112,Air mineral,,,1,6667,0,6667,0,6667,333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-12 14:35:00.096,9223-02-01 00:00:00,Sale,Roti,10034,Roti panggang coklat,,,1,21905,0,21905,0,21905,1095,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-04 09:56:00.096,9042-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-15 18:11:59.712,9329-02-01 00:00:00,Sale,Roti,10005,Roti Gandum Cokelat,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-15 14:44:59.712,9306-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Take Away,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-29 10:54:59.904,9532-02-01 00:00:00,Sale,Minuman,10107,Korean Mango Fresh Milk,,,1,26667,0,26667,0,26667,1334,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-15 10:52:59.808,9298-02-01 00:00:00,Sale,Kudapan,10004,Tahu walik,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-03 21:04:00.192,9038-02-01 00:00:00,Sale,Hidangan Utama,10012,Mie joglo,,,1,29524,0,29524,0,29524,1476,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-05 18:47:59.712,9073-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-29 13:54:00.288,9543-02-01 00:00:00,Sale,Roti,10005,Roti Gandum Cokelat,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-04 13:38:00.384,9043-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,928,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-26 18:38:59.712,9478-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-07 19:12:59.616,9128-02-01 00:00:00,Sale,Minuman,10106,Korean Strawberry Fresh Milk,,,1,26667,0,26667,0,26667,1333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-15 09:27:00.000,9296-02-01 00:00:00,Sale,Kudapan,10015,Tahu Lada Garam,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-01 11:39:59.904,8976-02-01 00:00:00,Sale,Minuman,10106,Korean Strawberry Fresh Milk,,,1,26667,0,26667,0,26667,1333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-04 15:20:00.096,9048-02-01 00:00:00,Sale,Roti,10043,Roti keju,,,2,19048,0,19048,0,19048,952,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-03 19:20:00.384,9027-02-01 00:00:00,Sale,Minuman,10122,Rempah Madu Panas,,,1,21905,0,21905,0,21905,1096,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-17 16:18:59.904,9345-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-28 18:51:59.904,9524-02-01 00:00:00,Sale,Hidangan Utama,10105,Beef Claypot Rice,,,1,38095,0,38095,0,38095,1905,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-07 16:12:59.616,9113-02-01 00:00:00,Sale,Minuman,10125,Gula Asam Dingin,,,1,20476,0,20476,0,20476,1024,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-01 15:26:00.384,8995-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-17 11:15:00.000,9338-02-01 00:00:00,Sale,Roti,10005,Roti Gandum Cokelat,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-14 13:34:59.808,9270-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-08 12:20:59.712,9149-02-01 00:00:00,Sale,Kudapan,10004,Tahu walik,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-01 18:36:59.616,9003-02-01 00:00:00,Sale,Kudapan,10014,Tempe Mendoan,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-08 15:31:59.808,9161-02-01 00:00:00,Sale,Kudapan,10011,Kentang Goreng,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-04 17:12:00.288,9054-02-01 00:00:00,Sale,Roti,10000,Roti Bawang Saus Keju,,,2,59048,0,59048,0,59048,2953,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-08 10:11:00.384,9146-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-27 11:50:00.384,9480-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-08 17:24:00.000,9173-02-01 00:00:00,Sale,Kudapan,10014,Tempe Mendoan,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-22 13:03:00.000,9433-02-01 00:00:00,Sale,Roti,10055,Roti Gandum Cokelat 2 pcs,,,1,34762,0,34762,0,34762,1738,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-07 15:53:00.384,9109-02-01 00:00:00,Sale,Roti,10000,Roti Bawang Saus Keju,,,1,29524,0,29524,0,29524,1476,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-20 14:08:59.712,9388-02-01 00:00:00,Sale,Hidangan Utama,10003,Nasi Goreng Temu,,,1,29524,0,29524,0,29524,1476,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-22 11:06:59.616,9430-02-01 00:00:00,Sale,Minuman,10106,Korean Strawberry Fresh Milk,,,1,26667,0,26667,0,26667,1334,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-05 19:00:59.904,9074-02-01 00:00:00,Sale,Roti,10007,Roti cranberry 2 pcs,,,1,33810,0,33810,0,33810,1691,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-04 15:44:00.384,9049-02-01 00:00:00,Sale,Minuman,10119,Teh Tawar Dingin,,,1,7143,0,7143,0,7143,357,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-29 17:15:00.000,9555-02-01 00:00:00,Sale,Minuman,10127,Kopi Tubruk Panas,,,1,18571,0,18571,0,18571,928,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-03 19:02:00.384,9023-02-01 00:00:00,Sale,Roti,10054,Roti toast eskrim,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-12 11:57:00.288,9214-02-01 00:00:00,Sale,Roti,10000,Roti Bawang Saus Keju,,,1,29524,0,29524,0,29524,1476,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-13 21:08:00.384,9256-02-01 00:00:00,Sale,Minuman,10106,Korean Strawberry Fresh Milk,,,1,26667,0,26667,0,26667,1333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-08 17:19:59.808,9171-02-01 00:00:00,Sale,Kudapan,10004,Tahu walik,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-29 14:03:59.904,9544-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1166,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-06 15:38:59.712,9094-02-01 00:00:00,Sale,Minuman,10026,Es Kopi Lemon,,,1,21905,0,21905,0,21905,1095,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-24 17:15:00.000,9454-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-21 10:50:00.096,9397-02-01 00:00:00,Sale,Minuman,10063,Wedang Bulan,,,1,24762,0,24762,0,24762,1238,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-20 14:57:59.904,9393-02-01 00:00:00,Sale,Kudapan,10014,Tempe Mendoan,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-15 17:12:00.288,9321-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-28 15:29:00.096,9515-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1166,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-18 13:27:59.904,9357-02-01 00:00:00,Sale,Minuman,10125,Gula Asam Dingin,,,1,20476,0,20476,0,20476,1024,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-08 10:52:59.808,9148-02-01 00:00:00,Sale,Roti,10007,Roti cranberry 2 pcs,,,1,33810,0,33810,0,33810,1691,Take Away,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-20 10:07:59.808,9382-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-15 09:22:00.192,9295-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-25 21:08:00.384,9465-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-04 17:12:00.288,9054-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,928,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-01 11:39:59.904,8976-02-01 00:00:00,Sale,Minuman,10118,Teh Tawar Panas,,,1,7143,0,7143,0,7143,357,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-18 16:12:00.000,9365-02-01 00:00:00,Sale,Kudapan,10014,Tempe Mendoan,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-06 10:39:59.616,9088-02-01 00:00:00,Sale,Promo,10021,(Voucher Gratis) Roti Gandum Coklat,,,2,0,0,0,0,0,0,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-07 19:41:00.096,9133-02-01 00:00:00,Sale,Kudapan,10051,Tahu baso,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-08 16:27:59.904,9163-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-12 12:56:59.712,9216-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-07 19:05:00.096,9126-02-01 00:00:00,Sale,Roti,10005,Roti Gandum Cokelat,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-29 15:26:00.384,9550-02-01 00:00:00,Sale,Roti,10055,Roti Gandum Cokelat 2 pcs,,,1,34762,0,34762,0,34762,1738,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-01 19:52:59.808,9007-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-26 09:47:59.712,9467-02-01 00:00:00,Sale,Roti,10005,Roti Gandum Cokelat,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-06 16:02:00.384,9095-02-01 00:00:00,Sale,Roti,10007,Roti cranberry 2 pcs,,,1,33810,0,33810,0,33810,1691,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-14 16:09:59.904,9280-02-01 00:00:00,Sale,Hidangan Utama,10105,Beef Claypot Rice,,,1,38095,0,38095,0,38095,1905,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-28 21:00:00.000,9527-02-01 00:00:00,Sale,Kudapan,10004,Tahu walik,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-24 16:52:59.808,9452-02-01 00:00:00,Sale,Roti,10007,Roti cranberry 2 pcs,,,1,33810,0,33810,0,33810,1691,Take Away,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-10 14:19:00.192,9187-02-01 00:00:00,Sale,Kudapan,10009,Jamur Enoki Krispi,,,1,26667,0,26667,0,26667,1333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-07 16:54:00.288,9118-02-01 00:00:00,Sale,Minuman,10118,Teh Tawar Panas,,,1,7143,0,7143,0,7143,357,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-19 20:51:59.616,9378-02-01 00:00:00,Sale,Roti,10000,Roti Bawang Saus Keju,,,1,29524,0,29524,0,29524,1476,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-21 13:48:00.000,9407-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1166,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-07 21:09:59.616,9140-02-01 00:00:00,Sale,Minuman,10013,Kopi cur,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-08 08:35:59.712,9142-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-29 12:47:00.096,9541-02-01 00:00:00,Sale,Minuman,10120,Lemon Tea Panas,,,1,19524,0,19524,0,19524,977,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-20 14:30:00.288,9390-02-01 00:00:00,Sale,Minuman,10112,Air mineral,,,1,6667,0,6667,0,6667,333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-03 13:07:00.192,9015-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-03 11:12:00.288,9011-02-01 00:00:00,Sale,Roti,10043,Roti keju,,,1,9524,0,9524,0,9524,477,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-08 13:18:00.288,9151-02-01 00:00:00,Sale,Roti,10007,Roti cranberry 2 pcs,,,1,33810,0,33810,0,33810,1691,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-24 14:14:00.384,9449-02-01 00:00:00,Sale,Roti,10007,Roti cranberry 2 pcs,,,1,33810,0,33810,0,33810,1691,Take Away,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-25 19:36:59.904,9464-02-01 00:00:00,Sale,Minuman,10070,Wedang laut,,,1,24762,0,24762,0,24762,1238,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-29 18:11:59.712,9562-02-01 00:00:00,Sale,Minuman,10056,Susu murni moca,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-15 17:12:00.288,9321-02-01 00:00:00,Sale,Kudapan,10010,Pisang Goreng,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-22 10:29:00.384,9429-02-01 00:00:00,Sale,Minuman,10107,Korean Mango Fresh Milk,,,1,26667,0,26667,0,26667,1334,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-28 11:44:00.096,9501-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-10 17:44:00.096,9191-02-01 00:00:00,Sale,Minuman,10122,Rempah Madu Panas,,,2,43810,0,43810,0,43810,2190,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-14 14:03:59.904,9273-02-01 00:00:00,Sale,Roti,10005,Roti Gandum Cokelat,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-08 14:21:00.288,9157-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-24 20:35:00.096,9461-02-01 00:00:00,Sale,Roti,10033,Roti panggang sarikaya,,,1,21905,0,21905,0,21905,1095,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-03 19:54:59.904,9030-02-01 00:00:00,Sale,Roti,10007,Roti cranberry 2 pcs,,,1,33810,0,33810,0,33810,1691,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-14 11:21:59.904,9261-02-01 00:00:00,Sale,Roti,10005,Roti Gandum Cokelat,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-17 13:12:00.000,9340-02-01 00:00:00,Sale,Kudapan,10004,Tahu walik,,,1,25238,0,25238,0,25238,1261,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-27 21:04:59.808,9493-02-01 00:00:00,Sale,Minuman,10122,Rempah Madu Panas,,,1,21905,0,21905,0,21905,1095,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-01 14:30:59.904,8988-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1166,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-06 15:38:59.712,9094-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-20 10:07:59.808,9382-02-01 00:00:00,Sale,Minuman,10127,Kopi Tubruk Panas,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-21 15:36:00.000,9410-02-01 00:00:00,Sale,Hidangan Utama,10003,Nasi Goreng Temu,,,1,29524,0,29524,0,29524,1476,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-01 13:03:59.616,8980-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-12 14:33:00.000,9222-02-01 00:00:00,Refund,Minuman,10117,Teh Manis Dingin,,,-1,-14286,0,-14286,0,-14286,-714,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-08 17:05:00.384,9166-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-28 10:39:59.616,9498-02-01 00:00:00,Sale,Roti,10055,Roti Gandum Cokelat 2 pcs,,,1,34762,0,34762,0,34762,1738,Take Away,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-15 16:30:00.000,9315-02-01 00:00:00,Sale,Roti,10055,Roti Gandum Cokelat 2 pcs,,,1,34762,0,34762,0,34762,1738,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-20 14:57:59.904,9393-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-29 14:12:59.904,9547-02-01 00:00:00,Sale,Minuman,10126,Chamomile Lemongrass Hot Artisan Tea,,,1,23810,0,23810,0,23810,1191,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-10 17:30:00.288,9189-02-01 00:00:00,Sale,Minuman,10106,Korean Strawberry Fresh Milk,,,1,26667,0,26667,0,26667,1333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-20 14:48:59.904,9392-02-01 00:00:00,Sale,Kudapan,10014,Tempe Mendoan,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-21 19:59:00.096,9423-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-29 15:26:00.384,9550-02-01 00:00:00,Sale,Roti,10007,Roti cranberry 2 pcs,,,1,33810,0,33810,0,33810,1690,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-14 16:30:00.000,9281-02-01 00:00:00,Sale,Kudapan,10004,Tahu walik,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-07 12:56:00.096,9103-02-01 00:00:00,Sale,Minuman,10107,Korean Mango Fresh Milk,,,2,53334,0,53334,0,53334,2667,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-01 14:06:59.616,8986-02-01 00:00:00,Sale,Minuman,10122,Rempah Madu Panas,,,1,21905,0,21905,0,21905,1095,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-11 17:15:59.616,9201-02-01 00:00:00,Sale,Roti,10005,Roti Gandum Cokelat,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-29 10:54:59.904,9532-02-01 00:00:00,Sale,Kudapan,10010,Pisang Goreng,,,1,25238,0,25238,0,25238,1261,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-08 16:23:59.712,9162-02-01 00:00:00,Sale,Minuman,10106,Korean Strawberry Fresh Milk,,,1,26667,0,26667,0,26667,1333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-08 10:14:59.712,9147-02-01 00:00:00,Sale,Roti,10000,Roti Bawang Saus Keju,,,1,29524,0,29524,0,29524,1476,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-29 09:53:00.384,9531-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-22 13:27:59.904,9435-02-01 00:00:00,Sale,Minuman,10057,Susu murni strawberry,,,1,19524,0,19524,0,19524,977,Dine In,Kedai,Temu Roti,Owner,,,Dingin,Closed,Sunday,September,2024,7,Weekend
+2024-09-08 14:01:00.192,9156-02-01 00:00:00,Sale,Roti,10005,Roti Gandum Cokelat,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-27 16:32:00.096,9488-02-01 00:00:00,Sale,Minuman,10107,Korean Mango Fresh Milk,,,1,26667,0,26667,0,26667,1333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-21 16:36:00.288,9413-02-01 00:00:00,Sale,Minuman,10123,Rempah Madu Dingin,,,1,21905,0,21905,0,21905,1095,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-12 09:51:00.288,9211-02-01 00:00:00,Sale,Kudapan,10051,Tahu baso,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-20 18:20:59.712,9395-02-01 00:00:00,Sale,Kudapan,10015,Tahu Lada Garam,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-05 15:02:00.096,9064-02-01 00:00:00,Sale,Roti,10042,Roti coklat,,,1,9524,0,9524,0,9524,476,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-15 09:27:00.000,9296-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1166,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-28 18:29:00.096,9522-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-12 09:49:59.808,9210-02-01 00:00:00,Sale,Minuman,10118,Teh Tawar Panas,,,1,7143,0,7143,0,7143,357,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-08 09:53:00.384,9145-02-01 00:00:00,Sale,Minuman,10120,Lemon Tea Panas,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-01 15:51:59.904,8997-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,928,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-01 17:35:00.096,9001-02-01 00:00:00,Sale,Kudapan,10010,Pisang Goreng,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-07 16:09:59.904,9112-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-26 20:37:00.192,9479-02-01 00:00:00,Sale,Roti,10007,Roti cranberry 2 pcs,,,1,33810,0,33810,0,33810,1691,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-08 16:29:00.384,9164-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-12 11:06:59.616,9212-02-01 00:00:00,Sale,Roti,10007,Roti cranberry 2 pcs,,,1,33810,0,33810,0,33810,1691,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-13 18:49:00.192,9249-02-01 00:00:00,Sale,Minuman,10106,Korean Strawberry Fresh Milk,,,1,26667,0,26667,0,26667,1333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-03 19:54:59.904,9030-02-01 00:00:00,Sale,Hidangan Utama,10012,Mie joglo,,,1,29524,0,29524,0,29524,1476,Dine In,Kedai,Temu Roti,Owner,,,Manis pedas,Closed,Tuesday,September,2024,2,Weekday
+2024-09-14 14:33:00.000,9275-02-01 00:00:00,Sale,Kudapan,10011,Kentang Goreng,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-27 14:44:59.712,9485-02-01 00:00:00,Sale,Kudapan,10010,Pisang Goreng,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-29 16:57:59.616,9553-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,2,46666,0,46666,0,46666,2333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-04 09:27:00.000,9039-02-01 00:00:00,Sale,Kudapan,10011,Kentang Goreng,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-20 14:42:59.616,9391-02-01 00:00:00,Sale,Kudapan,10015,Tahu Lada Garam,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-10 12:45:00.000,9186-02-01 00:00:00,Sale,Kudapan,10004,Tahu walik,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-08 16:23:59.712,9162-02-01 00:00:00,Sale,Kudapan,10014,Tempe Mendoan,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-07 15:53:00.384,9109-02-01 00:00:00,Sale,Minuman,10026,Es Kopi Lemon,,,1,21905,0,21905,0,21905,1095,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-17 09:38:59.712,9336-02-01 00:00:00,Sale,Roti,10007,Roti cranberry 2 pcs,,,1,33810,10143,23667,0,23667,1183,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-20 14:48:59.904,9392-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,4,93332,0,93332,0,93332,4666,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-10 17:32:00.384,9190-02-01 00:00:00,Sale,Kudapan,10011,Kentang Goreng,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-19 13:45:59.904,9373-02-01 00:00:00,Sale,Roti,10005,Roti Gandum Cokelat,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-04 17:39:59.904,9055-02-01 00:00:00,Sale,Hidangan Utama,10003,Nasi Goreng Temu,,,1,29524,0,29524,0,29524,1476,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-12 09:51:00.288,9211-02-01 00:00:00,Sale,Roti,10033,Roti panggang sarikaya,,,1,21905,0,21905,0,21905,1095,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-28 13:18:59.904,9505-02-01 00:00:00,Sale,Minuman,10026,Es Kopi Lemon,,,1,21905,0,21905,0,21905,1096,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-12 15:29:00.096,9224-02-01 00:00:00,Sale,Roti,10000,Roti Bawang Saus Keju,,,1,29524,0,29524,0,29524,1476,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-08 13:32:00.096,9153-02-01 00:00:00,Sale,Minuman,10117,Teh Manis Dingin,,,1,14286,0,14286,0,14286,715,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-08 10:11:00.384,9146-02-01 00:00:00,Sale,Roti,10005,Roti Gandum Cokelat,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-21 13:43:59.808,9406-02-01 00:00:00,Sale,Kudapan,10015,Tahu Lada Garam,,,2,50476,0,50476,0,50476,2524,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-07 19:20:00.384,9129-02-01 00:00:00,Sale,Minuman,10118,Teh Tawar Panas,,,1,7143,0,7143,0,7143,357,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-17 17:19:00.192,9346-02-01 00:00:00,Sale,Kudapan,10015,Tahu Lada Garam,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-14 13:50:00.096,9271-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-22 13:48:59.616,9437-02-01 00:00:00,Sale,Minuman,10121,Lemon Tea Dingin,,,1,19524,0,19524,0,19524,977,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-07 09:47:00.096,9102-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-14 16:32:59.712,9282-02-01 00:00:00,Sale,Kudapan,10015,Tahu Lada Garam,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-28 10:38:00.384,9497-02-01 00:00:00,Sale,Minuman,10106,Korean Strawberry Fresh Milk,,,1,26667,0,26667,0,26667,1334,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-15 14:44:59.712,9306-02-01 00:00:00,Sale,Minuman,10026,Es Kopi Lemon,,,2,43810,0,43810,0,43810,2190,Take Away,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-22 14:48:00.288,9438-02-01 00:00:00,Sale,Minuman,10121,Lemon Tea Dingin,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-15 10:52:59.808,9298-02-01 00:00:00,Sale,Minuman,10070,Wedang laut,,,1,24762,0,24762,0,24762,1238,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-29 14:06:59.616,9545-02-01 00:00:00,Sale,Minuman,10125,Gula Asam Dingin,,,1,20476,0,20476,0,20476,1024,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-15 12:06:00.288,9302-02-01 00:00:00,Sale,Minuman,10058,Susu murni ori,,,1,19524,0,19524,0,19524,977,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-13 14:06:59.616,9236-02-01 00:00:00,Sale,Promo,10023,(Voucher Gratis) Es Kopi Susu,,,3,0,0,0,0,0,0,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-12 12:33:00.288,9215-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-12 09:51:00.288,9211-02-01 00:00:00,Sale,Roti,10005,Roti Gandum Cokelat,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-12 14:35:00.096,9223-02-01 00:00:00,Sale,Hidangan Utama,10104,Chicken Claypot Rice,,,1,34762,0,34762,0,34762,1739,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-26 09:45:00.000,9466-02-01 00:00:00,Sale,Roti,10007,Roti cranberry 2 pcs,,,1,33810,0,33810,0,33810,1690,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-13 15:45:00.000,9239-02-01 00:00:00,Sale,Roti,10000,Roti Bawang Saus Keju,,,1,29524,0,29524,0,29524,1476,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-12 12:33:00.288,9215-02-01 00:00:00,Sale,Roti,10000,Roti Bawang Saus Keju,,,1,29524,0,29524,0,29524,1476,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-14 16:34:59.808,9283-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-28 09:45:00.000,9495-02-01 00:00:00,Sale,Roti,10007,Roti cranberry 2 pcs,,,1,33810,0,33810,0,33810,1691,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-21 11:12:00.288,9398-02-01 00:00:00,Sale,Minuman,10013,Kopi cur,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-11 17:15:59.616,9200-02-01 00:00:00,Refund,Roti,10002,Roti Cranberry,,,-1,-18571,0,-18571,0,-18571,-929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-18 19:23:00.096,9370-02-01 00:00:00,Sale,Minuman,10119,Teh Tawar Dingin,,,1,7143,0,7143,0,7143,357,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-12 19:50:59.712,9232-02-01 00:00:00,Sale,Roti,10000,Roti Bawang Saus Keju,,,1,29524,0,29524,0,29524,1476,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-26 09:47:59.712,9467-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-18 13:27:59.904,9357-02-01 00:00:00,Sale,Minuman,10112,Air mineral,,,1,6667,0,6667,0,6667,333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-27 19:12:00.000,9490-02-01 00:00:00,Sale,Minuman,10013,Kopi cur,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-20 14:48:59.904,9392-02-01 00:00:00,Sale,Kudapan,10015,Tahu Lada Garam,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-06 14:26:59.712,9092-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-21 15:15:59.904,9408-02-01 00:00:00,Sale,Kudapan,10014,Tempe Mendoan,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-22 13:43:59.808,9436-02-01 00:00:00,Sale,Roti,10005,Roti Gandum Cokelat,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-08 17:19:00.192,9170-02-01 00:00:00,Sale,Hidangan Utama,10053,Nasi telor,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-05 19:43:00.192,9081-02-01 00:00:00,Sale,Kudapan,10051,Tahu baso,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-01 11:33:00.000,8975-02-01 00:00:00,Sale,Roti,10007,Roti cranberry 2 pcs,,,1,33810,0,33810,0,33810,1691,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-08 15:18:59.616,9160-02-01 00:00:00,Sale,Roti,10000,Roti Bawang Saus Keju,,,1,29524,0,29524,0,29524,1476,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-06 10:38:00.384,9087-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-05 13:48:59.616,9061-02-01 00:00:00,Sale,Roti,10042,Roti coklat,,,2,19048,0,19048,0,19048,952,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-18 16:45:00.288,9368-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-21 20:06:59.616,9424-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,2,46666,0,46666,0,46666,2333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-03 20:46:59.808,9037-02-01 00:00:00,Sale,Roti,10007,Roti cranberry 2 pcs,,,1,33810,0,33810,0,33810,1691,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-18 13:50:59.712,9359-02-01 00:00:00,Sale,Kudapan,10051,Tahu baso,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-03 10:43:59.808,9010-02-01 00:00:00,Sale,Minuman,10057,Susu murni strawberry,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-08 15:31:59.808,9161-02-01 00:00:00,Sale,Minuman,10026,Es Kopi Lemon,,,1,21905,0,21905,0,21905,1095,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-03 20:10:00.192,9033-02-01 00:00:00,Sale,Roti,10007,Roti cranberry 2 pcs,,,1,33810,0,33810,0,33810,1691,Take Away,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-08 17:19:59.808,9171-02-01 00:00:00,Sale,Kudapan,10051,Tahu baso,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-08 17:10:59.808,9168-02-01 00:00:00,Sale,Kudapan,10011,Kentang Goreng,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-17 13:36:59.904,9342-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,928,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-10 14:19:00.192,9187-02-01 00:00:00,Sale,Minuman,10063,Wedang Bulan,,,2,49524,0,49524,0,49524,2477,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-07 15:54:00.000,9110-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-13 17:10:00.192,9242-02-01 00:00:00,Sale,Minuman,10120,Lemon Tea Panas,,,1,19524,0,19524,0,19524,977,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-27 12:20:59.712,9482-02-01 00:00:00,Sale,Hidangan Utama,10105,Beef Claypot Rice,,,1,38095,0,38095,0,38095,1905,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-17 12:24:00.288,9339-02-01 00:00:00,Sale,Roti,10000,Roti Bawang Saus Keju,,,1,29524,0,29524,0,29524,1476,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-10 16:47:00.384,9188-02-01 00:00:00,Sale,Roti,10000,Roti Bawang Saus Keju,,,1,29524,0,29524,0,29524,1476,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-01 14:39:59.904,8989-02-01 00:00:00,Sale,Kudapan,10011,Kentang Goreng,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-21 13:43:59.808,9406-02-01 00:00:00,Sale,Minuman,10127,Kopi Tubruk Panas,,,3,55713,0,55713,0,55713,2785,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-20 14:08:59.712,9388-02-01 00:00:00,Sale,Kudapan,10015,Tahu Lada Garam,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-27 21:04:59.808,9493-02-01 00:00:00,Sale,Minuman,10119,Teh Tawar Dingin,,,1,7143,0,7143,0,7143,357,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-07 19:05:00.096,9126-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,929,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-21 15:36:00.000,9410-02-01 00:00:00,Sale,Roti,10033,Roti panggang sarikaya,,,1,21905,0,21905,0,21905,1095,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-14 11:37:00.192,9262-02-01 00:00:00,Sale,Minuman,10117,Teh Manis Dingin,,,1,14286,0,14286,0,14286,714,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-29 14:10:00.192,9546-02-01 00:00:00,Refund,Minuman,10128,Es Kopi Susu,,,-1,-23333,0,-23333,0,-23333,-1166,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-15 17:51:00.000,9326-02-01 00:00:00,Sale,Roti,10000,Roti Bawang Saus Keju,,,1,29524,0,29524,0,29524,1476,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-14 20:26:59.712,9292-02-01 00:00:00,Sale,Minuman,10107,Korean Mango Fresh Milk,,,1,26667,0,26667,0,26667,1333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-21 13:48:00.000,9407-02-01 00:00:00,Sale,Roti,10054,Roti toast eskrim,,,2,50476,0,50476,0,50476,2524,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-03 19:39:00.000,9029-02-01 00:00:00,Sale,Minuman,10112,Air mineral,,,1,6667,0,6667,0,6667,333,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday
+2024-09-06 17:59:00.384,9100-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,928,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-13 16:14:00.096,9240-02-01 00:00:00,Sale,Hidangan Utama,10053,Nasi telor,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-06 15:13:00.192,9093-02-01 00:00:00,Sale,Minuman,10128,Es Kopi Susu,,,1,23333,0,23333,0,23333,1167,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-21 15:17:00.384,9409-02-01 00:00:00,Sale,Minuman,10125,Gula Asam Dingin,,,5,102380,0,102380,0,102380,5119,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-08 14:01:00.192,9156-02-01 00:00:00,Sale,Hidangan Utama,10003,Nasi Goreng Temu,,,1,29524,0,29524,0,29524,1476,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-04 17:42:59.616,9056-02-01 00:00:00,Sale,Roti,10005,Roti Gandum Cokelat,,,1,19524,0,19524,0,19524,976,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Wednesday,September,2024,3,Weekday
+2024-09-05 19:43:00.192,9081-02-01 00:00:00,Sale,Roti,10002,Roti Cranberry,,,1,18571,0,18571,0,18571,928,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Thursday,September,2024,4,Weekday
+2024-09-07 16:27:59.904,9116-02-01 00:00:00,Sale,Roti,10054,Roti toast eskrim,,,1,25238,0,25238,0,25238,1262,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Saturday,September,2024,6,Weekend
+2024-09-13 18:53:00.384,9251-02-01 00:00:00,Sale,Roti,10034,Roti panggang coklat,,,1,21905,0,21905,0,21905,1095,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-15 09:20:00.096,9294-02-01 00:00:00,Sale,Roti,10033,Roti panggang sarikaya,,,1,21905,0,21905,0,21905,1095,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Sunday,September,2024,7,Weekend
+2024-09-27 14:10:59.808,9483-02-01 00:00:00,Sale,Roti,10007,Roti cranberry 2 pcs,,,1,33810,0,33810,0,33810,1691,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Friday,September,2024,5,Weekday
+2024-09-10 17:32:00.384,9190-02-01 00:00:00,Sale,Minuman,10122,Rempah Madu Panas,,,1,21905,0,21905,0,21905,1095,Dine In,Kedai,Temu Roti,Owner,,,,Closed,Tuesday,September,2024,2,Weekday

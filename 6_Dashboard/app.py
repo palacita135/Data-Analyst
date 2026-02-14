@@ -12,51 +12,91 @@ def index():
     # Load Data from GUI (or use default)
     data_path = os.path.join(app.root_path, 'static', 'data.json')
     
+    # Initialize figures with placeholders (in case of no data)
+    fig_trend = px.line(title="Waiting for Data")
+    fig_items = px.bar(title="Waiting for Data")
+    fig_dining = px.pie(title="Waiting for Data")
+    
     if os.path.exists(data_path):
-        with open(data_path, 'r') as f:
-            data = json.load(f)
-            # Use data from GUI if available
-            # For this example, we'll just show a simple chart based on the industry
-            industry = data.get("industry", "Unknown")
-            
-            # Dynamic Chart Generation based on Industry
-            if industry == "Sales":
-                 df = pd.DataFrame({
-                    "Date": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-                    "Revenue": [100, 120, 110, 140, 130, 160],
-                    "Region": ["North", "North", "North", "North", "North", "North"]
-                })
-                 fig = px.line(df, x="Date", y="Revenue", title=f"{industry} Revenue Trend")
-            
-            elif industry == "Logistics":
-                 df = pd.DataFrame({
-                    "Route": ["Route A", "Route B", "Route C"],
-                    "Delivery Time": [4, 2, 5],
-                    "Status": ["Avg", "Fast", "Slow"]
-                })
-                 fig = px.bar(df, x="Route", y="Delivery Time", color="Status", title=f"{industry} Delivery Performance")
-            
-            else:
-                 # Default generic chart
-                 df = pd.DataFrame({
-                    "Category": ["A", "B", "C"],
-                    "Values": [10, 20, 30]
-                })
-                 fig = px.pie(df, values='Values', names='Category', title=f"{industry} Generic Data")
+        try:
+            with open(data_path, 'r') as f:
+                data = json.load(f)
+                
+                # Extract sample data (which was converted to string in GUI app)
+                sample_data = data.get("sample_data", [])
+                
+                if sample_data:
+                    df = pd.DataFrame(sample_data)
+                    
+                    # --- Data Type Conversion ---
+                    # Convert 'Date' back to datetime
+                    if 'Date' in df.columns:
+                        df['Date'] = pd.to_datetime(df['Date'], dayfirst=True, errors='coerce')
+                        
+                    # Convert Numeric columns (Sales / Real Estate)
+                    numeric_cols = ['Net sales', 'Quantity', 'Gross sales', 'Price']
+                    for col in numeric_cols:
+                        if col in df.columns:
+                            # Remove potential currency symbols/commas if any (though usually clean)
+                            df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0)
+                    
+                    # --- 1. Daily Sales Trend OR Price Distribution ---
+                    if 'Date' in df.columns and 'Net sales' in df.columns:
+                        # Resample/Group by Date (or Day) if needed, but for now plot raw or daily
+                        # If multiple entries per day, group by day
+                        daily_sales = df.groupby('Date')['Net sales'].sum().reset_index()
+                        fig_trend = px.line(daily_sales, x="Date", y="Net sales", 
+                                          title="Daily Revenue Trend", markers=True)
+                    elif 'Price' in df.columns and 'District' in df.columns:
+                         # Real Estate: Average Price by District
+                         avg_price = df.groupby('District')['Price'].mean().reset_index().sort_values('Price', ascending=False)
+                         fig_trend = px.bar(avg_price, x='District', y='Price', 
+                                          title="Average Property Price by District", text_auto='.2s')
 
-    else:
-        # Fallback if no data file (Default to Sales)
-        df = pd.DataFrame({
-            "Fruit": ["Apples", "Oranges", "Bananas", "Apples", "Oranges", "Bananas"],
-            "Amount": [4, 1, 2, 2, 4, 5],
-            "City": ["SF", "SF", "SF", "Montreal", "Montreal", "Montreal"]
-        })
-        fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group", title="Default Sales Data")
+                    # --- 2. Top Selling Items OR Type Distribution ---
+                    if 'Item' in df.columns and 'Quantity' in df.columns:
+                        top_items = df.groupby('Item')['Quantity'].sum().reset_index().sort_values(by='Quantity', ascending=False).head(5)
+                        fig_items = px.bar(top_items, x="Quantity", y="Item", orientation='h', 
+                                         title="Top 5 Items (Qty)", text='Quantity')
+                        fig_items.update_layout(yaxis={'categoryorder':'total ascending'})
+                    elif 'Type' in df.columns:
+                        # Real Estate: Property Type Count
+                        type_counts = df['Type'].value_counts().reset_index()
+                        type_counts.columns = ['Type', 'Count']
+                        fig_items = px.pie(type_counts, names='Type', values='Count', 
+                                         title="Property Type Distribution")
 
-    # Convert to JSON for the frontend
-    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+                    # --- 3. Dining Option OR Condition ---
+                    if 'Dining option' in df.columns:
+                         dining_counts = df['Dining option'].value_counts().reset_index()
+                         dining_counts.columns = ['Dining Option', 'Count']
+                         fig_dining = px.pie(dining_counts, values='Count', names='Dining Option', 
+                                           title="Dine In vs Take Away")
+                    elif 'Condition' in df.columns:
+                         # Real Estate: Condition
+                         condition_counts = df['Condition'].value_counts().reset_index()
+                         condition_counts.columns = ['Condition', 'Count']
+                         fig_dining = px.bar(condition_counts, x='Condition', y='Count',
+                                           title="Property Condition", text='Count')
+                    elif 'Town' in df.columns:
+                         # Alternative: Top 10 Towns
+                         top_towns = df['Town'].value_counts().head(10).reset_index()
+                         top_towns.columns = ['Town', 'Count']
+                         fig_dining = px.bar(top_towns, x='Count', y='Town', orientation='h',
+                                           title="Top 10 Towns by Listings", text='Count')
+                         fig_dining.update_layout(yaxis={'categoryorder':'total ascending'})
+        except Exception as e:
+            print(f"Error processing data: {e}")
 
-    return render_template('index.html', graphJSON=graphJSON)
+    # Convert to JSON
+    chart_trend = json.dumps(fig_trend, cls=plotly.utils.PlotlyJSONEncoder)
+    chart_items = json.dumps(fig_items, cls=plotly.utils.PlotlyJSONEncoder)
+    chart_dining = json.dumps(fig_dining, cls=plotly.utils.PlotlyJSONEncoder)
+
+    return render_template('index.html', 
+                         chart_trend=chart_trend, 
+                         chart_items=chart_items, 
+                         chart_dining=chart_dining)
 
 @app.route('/update_data', methods=['POST'])
 def update_data():

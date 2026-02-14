@@ -36,15 +36,23 @@ class ETLApp(ctk.CTk):
         self.label_file = ctk.CTkLabel(self, text="No file selected")
         self.label_file.grid(row=2, column=0, padx=20, pady=5)
 
-        # 3. Industry Selection
-        self.label_industry = ctk.CTkLabel(self, text="Select Industry:")
-        self.label_industry.grid(row=3, column=0, padx=20, pady=(10, 0))
-        self.option_industry = ctk.CTkOptionMenu(self, values=["Sales", "Logistics", "Finance", "HR"])
-        self.option_industry.grid(row=4, column=0, padx=20, pady=5)
+        # 3. Sheet Selection (Hidden by default, shown for Excel)
+        self.label_sheet = ctk.CTkLabel(self, text="Select Sheet:")
+        self.label_sheet.grid(row=3, column=0, padx=20, pady=(10, 0))
+        self.option_sheet = ctk.CTkOptionMenu(self, values=["Sheet1"])
+        self.option_sheet.grid(row=4, column=0, padx=20, pady=5)
+        self.label_sheet.grid_remove() # Hide initially
+        self.option_sheet.grid_remove() # Hide initially
 
-        # 4. Database Configuration (New Section)
+        # 4. Industry Selection
+        self.label_industry = ctk.CTkLabel(self, text="Select Industry:")
+        self.label_industry.grid(row=5, column=0, padx=20, pady=(10, 0))
+        self.option_industry = ctk.CTkOptionMenu(self, values=["Sales", "Logistics", "Finance", "HR", "Real Estate"])
+        self.option_industry.grid(row=6, column=0, padx=20, pady=5)
+
+        # 5. Database Configuration (New Section)
         self.frame_db = ctk.CTkFrame(self)
-        self.frame_db.grid(row=5, column=0, padx=20, pady=10, sticky="ew")
+        self.frame_db.grid(row=7, column=0, padx=20, pady=10, sticky="ew")
         self.frame_db.grid_columnconfigure(1, weight=1)
 
         ctk.CTkLabel(self.frame_db, text="MySQL Configuration").grid(row=0, column=0, columnspan=2, pady=5)
@@ -68,13 +76,13 @@ class ETLApp(ctk.CTk):
         self.entry_db.grid(row=4, column=1, padx=5, pady=2, sticky="ew")
         self.entry_db.insert(0, "data_analyst_db")
 
-        # 5. Process Data
+        # 6. Process Data
         self.btn_process = ctk.CTkButton(self, text="Process & Upload to MySQL", command=self.process_data)
-        self.btn_process.grid(row=6, column=0, padx=20, pady=20)
+        self.btn_process.grid(row=8, column=0, padx=20, pady=20)
         
-        # 6. Log Output
+        # 7. Log Output
         self.textbox_log = ctk.CTkTextbox(self, width=600, height=150)
-        self.textbox_log.grid(row=7, column=0, padx=20, pady=20)
+        self.textbox_log.grid(row=9, column=0, padx=20, pady=20)
 
         self.file_path = None
         
@@ -86,11 +94,99 @@ class ETLApp(ctk.CTk):
         self.textbox_log.insert("end", message + "\n")
         self.textbox_log.see("end")
 
+    def clean_data(self, df):
+        self.log("Starting data cleaning...")
+        original_count = len(df)
+        
+        industry = self.option_industry.get()
+
+        if industry == "Real Estate":
+            # --- Real Estate Specific Cleaning ---
+            self.log("Applying Real Estate cleaning rules...")
+            
+            # 1. Remove Duplicates
+            df.drop_duplicates(inplace=True)
+            
+            # 2. Key Columns check
+            if 'Price' in df.columns:
+                 # Ensure Price is numeric and positive
+                 df['Price'] = pd.to_numeric(df['Price'], errors='coerce')
+                 df = df.dropna(subset=['Price'])
+                 df = df[df['Price'] > 0]
+            
+            if 'District' in df.columns:
+                df['District'] = df['District'].astype(str).str.strip().str.title()
+                
+            # Impute missing numeric values
+            cols_to_zero = ['Parking', 'GrossArea', 'TotalArea', 'ConstructionYear', 'Garage', 'Elevator']
+            for col in cols_to_zero:
+                if col in df.columns:
+                    df[col] = df[col].fillna(0)
+                    
+            # Impute missing categorical
+            cols_to_unknown = ['EnergyCertificate', 'Condition']
+            for col in cols_to_unknown:
+                if col in df.columns:
+                    df[col] = df[col].fillna('Unknown')
+                    
+        else:
+            # --- Sales / General Cleaning (Existing Logic) ---
+            # 1. Convert Date
+            if 'Date' in df.columns:
+                # parsing with dayfirst=True is safer for international formats like DD/MM/YYYY
+                df['Date'] = pd.to_datetime(df['Date'], dayfirst=True, errors='coerce')
+                
+                # Remove rows with invalid dates
+                df = df.dropna(subset=['Date'])
+                
+                # 2. Extract Features
+                df['Day'] = df['Date'].dt.day_name()
+                df['Month'] = df['Date'].dt.month_name()
+                df['Year'] = df['Date'].dt.year
+                df['Days Number'] = df['Date'].dt.weekday + 1 # 1=Monday, 7=Sunday
+                df['Weekend/Weekday'] = df['Date'].dt.weekday.apply(lambda x: 'Weekend' if x >= 5 else 'Weekday')
+            
+            # 3. Filter Status
+            if 'Status' in df.columns:
+                # Clean formatting just in case
+                df['Status'] = df['Status'].astype(str).str.strip().str.title()
+                # Filter out Void (Keep Closed as they seem to be valid transactions)
+                df = df[~df['Status'].isin(['Void'])]
+                
+            # 4. Remove Invalid/Garbage Columns
+            # Sometimes Excel/CSV import reads the header row as a column if file is malformed
+            # Loop through columns and drop if length > 100 and contains commas (heuristic)
+            cols_to_drop = [c for c in df.columns if len(str(c)) > 50 and ',' in str(c)]
+            if cols_to_drop:
+                self.log(f"Dropping suspicious columns: {cols_to_drop}")
+                df = df.drop(columns=cols_to_drop)
+
+        self.log(f"Cleaned data: {len(df)} rows remaining (removed {original_count - len(df)}).")
+        return df
+
     def select_file(self):
-        self.file_path = filedialog.askopenfilename(filetypes=[("CSV Files", "*.csv")])
+        self.file_path = filedialog.askopenfilename(filetypes=[("CSV Files", "*.csv"), ("Excel Files", "*.xlsx;*.xls")])
         if self.file_path:
             self.label_file.configure(text=os.path.basename(self.file_path))
             self.log(f"Selected file: {self.file_path}")
+            
+            # Check if Excel and populate sheets
+            if self.file_path.endswith(('.xlsx', '.xls')):
+                try:
+                    xl = pd.ExcelFile(self.file_path)
+                    sheet_names = xl.sheet_names
+                    self.option_sheet.configure(values=sheet_names)
+                    self.option_sheet.set(sheet_names[0]) # Default to first sheet
+                    
+                    self.label_sheet.grid() # Show
+                    self.option_sheet.grid() # Show
+                    self.log(f"Found sheets: {sheet_names}")
+                except Exception as e:
+                    self.log(f"Error reading Excel sheets: {e}")
+            else:
+                # Hide sheet selection for CSV
+                self.label_sheet.grid_remove()
+                self.option_sheet.grid_remove()
 
     def start_flask_server(self):
         def run_server():
@@ -114,8 +210,16 @@ class ETLApp(ctk.CTk):
 
         try:
             # 1. Load Data
-            df = pd.read_csv(self.file_path)
+            if self.file_path.endswith(('.xlsx', '.xls')):
+                selected_sheet = self.option_sheet.get()
+                self.log(f"Reading sheet: {selected_sheet}...")
+                df = pd.read_excel(self.file_path, sheet_name=selected_sheet)
+            else:
+                df = pd.read_csv(self.file_path)
             self.log(f"Loaded {len(df)} rows.")
+
+            # 1.1 Clean Data
+            df = self.clean_data(df)
 
             # 2. Split Data (Example: 80/20 split)
             train_df, test_df = train_test_split(df, test_size=0.2, random_state=42)
@@ -164,6 +268,12 @@ class ETLApp(ctk.CTk):
                  self.log("Skipping MySQL upload (Configuration missing).")
 
             # 4. Send to Dashboard (Mock API Call / Shared File)
+            # Create a serializable version of the dataframe head (Increase to 5000 for meaningful charts)
+            sample_df = df.head(5000).copy()
+            # Convert all columns to string to avoid JSON serialization errors with Timestamps
+            for col in sample_df.columns:
+                sample_df[col] = sample_df[col].astype(str)
+
             dashboard_data = {
                 "industry": industry,
                 "summary": {
@@ -171,7 +281,7 @@ class ETLApp(ctk.CTk):
                     "train_rows": len(train_df),
                     "test_rows": len(test_df)
                 },
-                "sample_data": df.head().to_dict(orient="records")
+                "sample_data": sample_df.to_dict(orient="records")
             }
             
             shared_data_path = "c:/Users/palac/Documents/Data Analyst/6_Dashboard/static/data.json"

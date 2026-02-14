@@ -100,27 +100,69 @@
                 </div>
               </div>
               <!-- ./col -->
+              <!-- Chart 1: Sales Trend -->
               <div class="col-lg-12">
-            <div class="card">
-              <div class="card-header border-0">
-                <div class="d-flex justify-content-between">
-                  <h3 class="card-title">Sales</h3>
+                <div class="card">
+                  <div class="card-header border-0">
+                    <h3 class="card-title">Sales Revenue Trend</h3>
+                  </div>
+                  <div class="card-body">
+                    <div
+                      id="chart_trend"
+                      class="chart"
+                      style="height: 300px"
+                    ></div>
+                  </div>
                 </div>
               </div>
-              <div class="card-body">
-                <div id="chart" class="chart"></div>
+            </div>
+
+            <div class="row">
+              <!-- Chart 2: Top Items -->
+              <div class="col-lg-6">
+                <div class="card">
+                  <div class="card-header border-0">
+                    <h3 class="card-title">Top Selling Items</h3>
+                  </div>
+                  <div class="card-body">
+                    <div
+                      id="chart_items"
+                      class="chart"
+                      style="height: 300px"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Chart 3: Dining Option -->
+              <div class="col-lg-6">
+                <div class="card">
+                  <div class="card-header border-0">
+                    <h3 class="card-title">Dining Options</h3>
+                  </div>
+                  <div class="card-body">
+                    <div
+                      id="chart_dining"
+                      class="chart"
+                      style="height: 300px"
+                    ></div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <!-- /.row -->
+            <!-- /.row -->
 
-        <!-- Plotly Script -->
-        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-        <script type="text/javascript">
-            var graphs = {{ graphJSON | safe }};
-            Plotly.newPlot('chart', graphs, {});
-        </script>
+            <!-- Plotly Script -->
+            <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+            <script type="text/javascript">
+                  var chart1 = {{ chart_trend | safe }};
+                  var chart2 = {{ chart_items | safe }};
+                  var chart3 = {{ chart_dining | safe }};
+
+                  Plotly.newPlot('chart_trend', chart1, {});
+                  Plotly.newPlot('chart_items', chart2, {});
+                  Plotly.newPlot('chart_dining', chart3, {});
+            </script>
           </div>
           <!-- /.container-fluid -->
         </section>
