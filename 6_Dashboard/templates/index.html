@@ -55,12 +55,48 @@
               data-accordion="false"
             >
               <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <a href="/" class="nav-link active">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>Dashboard</p>
+                  <p>Dashboard Overview</p>
                 </a>
               </li>
-              <!-- Add more menu items here -->
+              <li class="nav-header">REPORTS</li>
+              <li class="nav-item">
+                <a href="/report/daily" class="nav-link">
+                  <i class="nav-icon fas fa-calendar-day"></i>
+                  <p>Daily Analysis</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/report/weekly" class="nav-link">
+                  <i class="nav-icon fas fa-calendar-week"></i>
+                  <p>Weekly Analysis</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/report/monthly" class="nav-link">
+                  <i class="nav-icon fas fa-calendar-alt"></i>
+                  <p>Monthly Analysis</p>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a href="/report/3month" class="nav-link">
+                  <i class="nav-icon fas fa-chart-pie"></i>
+                  <p>Quarterly (3 Month)</p>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a href="/report/6month" class="nav-link">
+                  <i class="nav-icon fas fa-chart-area"></i>
+                  <p>Half-Yearly (6 Month)</p>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a href="/report/yearly" class="nav-link">
+                  <i class="nav-icon fas fa-chart-line"></i>
+                  <p>Yearly Analysis</p>
+                </a>
+              </li>
             </ul>
           </nav>
         </div>
@@ -84,27 +120,55 @@
           <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
+              <div class="col-lg-12">
+                 <div class="card bg-gradient-success">
+                  <div class="card-header border-0">
+                    <h3 class="card-title">
+                      <i class="fas fa-lightbulb mr-1"></i>
+                      Strategic Recommendations
+                    </h3>
+                  </div>
+                  <div class="card-body">
+                    <p class="card-text" id="recommendation-text">
+                        {{ recommendation | default('Select a report from the sidebar to see specific actionable insights.') }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
               <div class="col-lg-3 col-6">
                 <!-- small box -->
                 <div class="small-box bg-info">
                   <div class="inner">
-                    <h3>150</h3>
-                    <p>New Orders</p>
+                    <h3>{{ total_orders | default('0') }}</h3>
+                    <p>Total Transactions</p>
                   </div>
                   <div class="icon">
                     <i class="ion ion-bag"></i>
                   </div>
-                  <a href="#" class="small-box-footer"
-                    >More info <i class="fas fa-arrow-circle-right"></i
-                  ></a>
                 </div>
               </div>
-              <!-- ./col -->
+               <!-- ./col -->
+               <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                  <div class="inner">
+                    <h3>{{ total_revenue | default('0') }}</h3>
+                    <p>Total Revenue</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-cash"></i>
+                  </div>
+                </div>
+              </div>
+              
               <!-- Chart 1: Sales Trend -->
               <div class="col-lg-12">
                 <div class="card">
                   <div class="card-header border-0">
-                    <h3 class="card-title">Sales Revenue Trend</h3>
+                    <h3 class="card-title">{{ chart1_title | default('Sales Revenue Trend') }}</h3>
                   </div>
                   <div class="card-body">
                     <div
@@ -149,19 +213,40 @@
                   </div>
                 </div>
               </div>
+              <!-- Chart 4: Weekly Trend -->
+              <div class="col-lg-6">
+                <div class="card">
+                  <div class="card-header border-0">
+                    <h3 class="card-title">Weekly Sales Trend</h3>
+                  </div>
+                  <div class="card-body">
+                    <div
+                      id="chart_weekly"
+                      class="chart"
+                      style="height: 300px"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+
             </div>
             <!-- /.row -->
 
             <!-- Plotly Script -->
             <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
             <script type="text/javascript">
-                  var chart1 = {{ chart_trend | safe }};
-                  var chart2 = {{ chart_items | safe }};
-                  var chart3 = {{ chart_dining | safe }};
+                  var chart1 = {{ graph1JSON | safe }};
+                  var chart2 = {{ graph2JSON | safe }};
+                  var chart3 = {{ graph3JSON | safe }};
+                  var chart4 = {{ graph4JSON | safe }};
 
-                  Plotly.newPlot('chart_trend', chart1, {});
-                  Plotly.newPlot('chart_items', chart2, {});
-                  Plotly.newPlot('chart_dining', chart3, {});
+                  Plotly.newPlot('chart_trend', chart1.data, chart1.layout);
+                  Plotly.newPlot('chart_items', chart2.data, chart2.layout);
+                  Plotly.newPlot('chart_dining', chart3.data, chart3.layout);
+                  
+                  if (chart4 && Object.keys(chart4).length > 0) {
+                      Plotly.newPlot('chart_weekly', chart4.data, chart4.layout);
+                  }
             </script>
           </div>
           <!-- /.container-fluid -->
@@ -173,7 +258,7 @@
       <footer class="main-footer">
         <div class="float-right d-none d-sm-inline">Data Analyst Workflow</div>
         <strong
-          >Copyright &copy; 2023-2024
+          >Copyright &copy; 2026
           <a href="https://adminlte.io">AdminLTE.io</a>.</strong
         >
         All rights reserved.

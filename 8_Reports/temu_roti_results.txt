@@ -1,0 +1,65 @@
+=== Temu Roti Sales Analysis (2024) ===
+
+Loaded 2160 rows from 7_RAW/Temu Roti V2/Raw Data Jun.xlsx (Sheet: Data)
+Date Range: 2024-01-06 to 2024-12-06
+
+--- A. Daily Analysis (Average Sales by Day) ---
+DayName
+Monday       21949.989474
+Tuesday      21778.043344
+Wednesday    23270.848485
+Thursday     22281.701550
+Friday       20260.851582
+Saturday     23138.891525
+Sunday       24718.557895
+Best Performing Day: Sunday (€24,718.56)
+
+--- B. Weekly Analysis (Total Sales) ---
+Week
+1     2817153
+6     2964296
+14    2746194
+19    2085249
+23    1596193
+... (showing first 5 weeks)
+Average Weekly Sales: €3,730,754.54
+
+--- C. Monthly Analysis (Total Sales) ---
+Month
+2024-01     2817153
+2024-02     2964296
+2024-04     2746194
+2024-05     2085249
+2024-06    28613558
+2024-07     1117622
+2024-08     2708580
+2024-09     2716197
+2024-11     1152384
+2024-12     1578576
+Freq: M
+
+--- D. 3-Month (Quarterly) Analysis ---
+Date
+2024-03-31     5781449
+2024-06-30    33445001
+2024-09-30     6542399
+2024-12-31     2730960
+Freq: QE-DEC
+
+--- E. 6-Month (Half-Yearly) Analysis ---
+HalfYear
+H1 (Jan-Jun)    39226450
+H2 (Jul-Dec)     9273359
+
+--- F. Yearly Analysis ---
+Total Revenue (2024): €48,499,809.00
+Total Quantity Sold: 2,144
+Total Transactions: 2160
+
+--- G. Top 5 Items (by Quantity) ---
+Item
+Es Kopi Susu             194
+Roti cranberry 2 pcs     177
+Roti Cranberry           165
+Roti Gandum Cokelat      123
+Roti Bawang Saus Keju    121

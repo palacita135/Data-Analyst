@@ -47,7 +47,7 @@ class ETLApp(ctk.CTk):
         # 4. Industry Selection
         self.label_industry = ctk.CTkLabel(self, text="Select Industry:")
         self.label_industry.grid(row=5, column=0, padx=20, pady=(10, 0))
-        self.option_industry = ctk.CTkOptionMenu(self, values=["Sales", "Logistics", "Finance", "HR", "Real Estate"])
+        self.option_industry = ctk.CTkOptionMenu(self, values=["Sales", "Logistics", "Finance", "HR", "Real Estate", "Food & Beverage"])
         self.option_industry.grid(row=6, column=0, padx=20, pady=5)
 
         # 5. Database Configuration (New Section)
@@ -128,6 +128,21 @@ class ETLApp(ctk.CTk):
             for col in cols_to_unknown:
                 if col in df.columns:
                     df[col] = df[col].fillna('Unknown')
+                    
+        elif industry == "Food & Beverage":
+            # --- F&B Specific Cleaning ---
+            self.log("Applying Food & Beverage cleaning rules...")
+            
+            # 1. Date Conversion
+            if 'Date' in df.columns:
+                df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
+                df = df.dropna(subset=['Date'])
+            
+            # 2. Numeric Conversion
+            numeric_cols = ['Net sales', 'Quantity', 'Gross sales']
+            for col in numeric_cols:
+                if col in df.columns:
+                    df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0)
                     
         else:
             # --- Sales / General Cleaning (Existing Logic) ---
@@ -216,8 +231,37 @@ class ETLApp(ctk.CTk):
                 df = pd.read_excel(self.file_path, sheet_name=selected_sheet)
             else:
                 df = pd.read_csv(self.file_path)
-            self.log(f"Loaded {len(df)} rows.")
+            self.log(f"Loaded {len(df)} rows. Shape: {df.shape}")
+            self.log(f"Columns: {df.columns.tolist()}")
 
+            # --- CRITICAL FIX: Check if data is compressed in one column (mixed with empty/unnamed) ---
+            # Check if the first column (or any column) looks like a CSV header
+            # Heuristic: Length > 30 and contains at least 3 commas
+            potential_csv_col = None
+            for col in df.columns:
+                if isinstance(col, str) and len(col) > 30 and col.count(',') >= 3:
+                     potential_csv_col = col
+                     break
+            
+            if potential_csv_col:
+                self.log(f"Detected compressed CSV column: '{potential_csv_col[:30]}...'")
+                try:
+                    # Treat this column as the data source
+                    s = df[potential_csv_col].astype(str)
+                    
+                    # Need to properly quote/escape if using StringIO, but given it's likely simple CSV:
+                    from io import StringIO
+                    
+                    # Reconstruction
+                    csv_data = potential_csv_col + "\n" + s.str.cat(sep="\n")
+                    
+                    # Re-parse
+                    df_new = pd.read_csv(StringIO(csv_data))
+                    self.log(f"Successfully split into {len(df_new.columns)} columns.")
+                    df = df_new
+                except Exception as split_err:
+                     self.log(f"Error splitting column: {split_err}")
+            
             # 1.1 Clean Data
             df = self.clean_data(df)
 
@@ -284,8 +328,12 @@ class ETLApp(ctk.CTk):
                 "sample_data": sample_df.to_dict(orient="records")
             }
             
-            shared_data_path = "c:/Users/palac/Documents/Data Analyst/6_Dashboard/static/data.json"
-            os.makedirs(os.path.dirname(shared_data_path), exist_ok=True)
+            # Use dynamic path relative to this script
+            base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            dashboard_static_dir = os.path.join(base_dir, '6_Dashboard', 'static')
+            os.makedirs(dashboard_static_dir, exist_ok=True)
+            shared_data_path = os.path.join(dashboard_static_dir, 'data.json')
+            
             with open(shared_data_path, "w") as f:
                 json.dump(dashboard_data, f, indent=4)
             
