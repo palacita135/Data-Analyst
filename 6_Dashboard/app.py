@@ -5,8 +5,41 @@ import plotly
 import plotly.graph_objects as go
 import plotly.express as px
 import os
+from analysis_engine import DataAnalyzer
 
 app = Flask(__name__)
+
+@app.route('/api/chat', methods=['POST'])
+def api_chat():
+    """Handle chat queries"""
+    try:
+        data = request.json
+        query = data.get('query', '')
+        
+        # Load latest data
+        data_path = os.path.join(app.root_path, 'static', 'data.json')
+        if not os.path.exists(data_path):
+            return jsonify({"response": "No data available. Please process a file first."})
+            
+        with open(data_path, 'r') as f:
+            js_data = json.load(f)
+            sample_data = js_data.get("sample_data", [])
+            
+        if not sample_data:
+             return jsonify({"response": "Data file is empty."})
+             
+        df = pd.DataFrame(sample_data)
+        analyzer = DataAnalyzer(df)
+        
+        # Filter based on current view if needed (future enhancement)
+        # For now, analyze full dataset or let user specify in query
+        
+        response_text = analyzer.process_chat_query(query)
+        
+        return jsonify({"response": response_text})
+        
+    except Exception as e:
+        return jsonify({"response": f"Error: {str(e)}"})
 
 @app.route('/')
 def index():
@@ -23,17 +56,10 @@ def index():
     fig_weekly = {} # Initialize empty dict for optional chart
     title = "Sales Trend" # Default title
     
-    # --- Recommendation Logic ---
-    recommendations = {
-        "daily": "Focus on **Sunday**! It's your peak day. Consider a 'Weekend Bundle' to drive volume even higher.",
-        "weekly": "Review the **Weekly Trend**. If you see a dip, launch a mid-week flash sale (Wednesday) to stabilize revenue.",
-        "monthly": "Capitalize on the **June Spike**. Replicate successful Q2 campaigns in Q4 (October/November) to boost year-end results.",
-        "3month": "Quarterly Review: **Q2** is your strongest season. Ensure inventory is maximized for Apr-Jun.",
-        "6month": "Half-Yearly Insight: **H1** generates 81% of revenue. Plan aggressive marketing for H2 to balance the year.",
-        "yearly": "Yearly Overview: **Es Kopi Susu** is your volume leader. Build your 2025 strategy around Coffee + Food combos."
-    }
-    recommendation_text = recommendations.get(period, recommendations['monthly'])
-
+    # --- AI Analysis Initialization ---
+    analyzer = None
+    recommendation_text = "Select a dataset to see AI insights."
+    
     # Helper for formatting currency
     def format_currency(val):
         return f"Rp {val:,.0f}" if val > 1000000 else f"{val:,.0f}"
@@ -138,6 +164,27 @@ def index():
                     # Use filtered_df for all subsequent calculations
                     df = filtered_df 
                     
+                    # --- AI Analysis Execution ---
+                    if not df.empty:
+                        analyzer = DataAnalyzer(df)
+                        insights = analyzer.generate_summary()
+                        prediction = analyzer.predict_revenue_next_30_days()
+                        
+                        # Build Recommendation Text
+                        rec_parts = []
+                        if 'top_item' in insights:
+                            rec_parts.append(f"<b>Top Performer:</b> {insights['top_item']}.")
+                        if 'anomalies' in insights and insights['anomalies'] > 0:
+                            rec_parts.append(f"<b>Alert:</b> Detected {insights['anomalies']} days with unusual sales volume.")
+                        
+                        if isinstance(prediction, dict):
+                            rec_parts.append(f"<b>Forecast:</b> Sales are trending {prediction['trend']}. Projected approx. {format_currency(prediction['predicted_total'])} next 30 days.")
+                        
+                        if rec_parts:
+                            recommendation_text = "<br>".join(rec_parts)
+                        else:
+                             recommendation_text = "Insufficient data for advanced AI insights."
+                    
                     # --- CHECK IF DATA IS AVAILABLE ---
                     if df.empty:
                         title = "NO DATA AVAILABLE"
@@ -209,24 +256,18 @@ def index():
                     # --- 2. Top Selling Items OR Type Distribution ---
                     if 'Item' in df.columns and 'Quantity' in df.columns:
                         top_items = df.groupby('Item')['Quantity'].sum().reset_index().sort_values(by='Quantity', ascending=False).head(5)
-                        print(f"DEBUG: Top Items ({p_label}):\n{top_items}") # DEBUG
                         fig_items = px.bar(top_items, x="Quantity", y="Item", orientation='h', 
                                          title=f"Top 5 Items ({p_label})", text='Quantity')
                         fig_items.update_layout(yaxis={'categoryorder':'total ascending'})
-                    elif 'Type' in df.columns:
-                        # Real Estate: Property Type Count
-                        type_counts = df['Type'].value_counts().reset_index()
-                        type_counts.columns = ['Type', 'Count']
-                        fig_items = px.pie(type_counts, names='Type', values='Count', 
-                                         title=f"Property Type Distribution ({p_label})")
                         
-                    # --- 3. Dining Option OR Condition OR Avg Sales by Day ---
+                    # --- 3. Dining Option OR Avg Sales by Day ---
                     # Logic: Try to produce *some* 3rd chart
                     if 'Dining option' in df.columns:
                          dining_counts = df['Dining option'].value_counts().reset_index()
                          dining_counts.columns = ['Dining Option', 'Count']
                          fig_dining = px.pie(dining_counts, values='Count', names='Dining Option', 
                                            title=f"Dine In vs Take Away ({p_label})")
+                                           
                     elif 'Net sales' in df.columns and 'Date' in df.columns:
                          # F&B: Sales by Day of Week (Always useful)
                          if 'Day' not in df.columns: # Check if already created
@@ -237,19 +278,6 @@ def index():
                          fig_dining = px.bar(daily_avg, x='Day', y='Net sales',
                                            title=f"Avg Sales by Day ({p_label})", text_auto='.2s')
                          fig_dining.update_yaxes(tickprefix="Rp ", tickformat=".2s")
-                    elif 'Condition' in df.columns:
-                         # Real Estate: Condition
-                         condition_counts = df['Condition'].value_counts().reset_index()
-                         condition_counts.columns = ['Condition', 'Count']
-                         fig_dining = px.bar(condition_counts, x='Condition', y='Count',
-                                           title=f"Property Condition ({p_label})", text='Count')
-                    elif 'Town' in df.columns:
-                         # Alternative: Top 10 Towns
-                         top_towns = df['Town'].value_counts().head(10).reset_index()
-                         top_towns.columns = ['Town', 'Count']
-                         fig_dining = px.bar(top_towns, x='Count', y='Town', orientation='h',
-                                           title=f"Top 10 Towns ({p_label})", text='Count')
-                         fig_dining.update_layout(yaxis={'categoryorder':'total ascending'})
 
                     # --- 4. Quantity per Item (Full List TABLE) ---
                     # User Request: "Top Items sells each item... example Top Items (Daily): Item Quantity..."

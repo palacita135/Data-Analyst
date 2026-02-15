@@ -21,7 +21,7 @@ class ETLApp(ctk.CTk):
     def __init__(self):
         super().__init__()
 
-        self.title("Data Analyst ETL Tool")
+        self.title("DATA ANALYST SALES")
         self.geometry("700x700")
 
         # Layout configuration
@@ -29,11 +29,11 @@ class ETLApp(ctk.CTk):
         self.grid_rowconfigure(7, weight=1) # Adjusted for more rows
 
         # 1. Title
-        self.label_title = ctk.CTkLabel(self, text="Data Analyst ETL Pipeline", font=("Roboto", 24))
+        self.label_title = ctk.CTkLabel(self, text="DATA ANALYST SALES", font=("Roboto", 24, "bold"))
         self.label_title.grid(row=0, column=0, padx=20, pady=20)
 
         # 2. File Selection
-        self.btn_file = ctk.CTkButton(self, text="Select CSV File", command=self.select_file)
+        self.btn_file = ctk.CTkButton(self, text="Select Raw Data (CSV/Excel)", command=self.select_file)
         self.btn_file.grid(row=1, column=0, padx=20, pady=10)
         self.label_file = ctk.CTkLabel(self, text="No file selected")
         self.label_file.grid(row=2, column=0, padx=20, pady=5)
@@ -46,15 +46,9 @@ class ETLApp(ctk.CTk):
         self.label_sheet.grid_remove() # Hide initially
         self.option_sheet.grid_remove() # Hide initially
 
-        # 4. Industry Selection
-        self.label_industry = ctk.CTkLabel(self, text="Select Industry:")
-        self.label_industry.grid(row=5, column=0, padx=20, pady=(10, 0))
-        self.option_industry = ctk.CTkOptionMenu(self, values=["Sales", "Logistics", "Finance", "HR", "Real Estate", "Food & Beverage"])
-        self.option_industry.grid(row=6, column=0, padx=20, pady=5)
-
-        # 5. Database Configuration (New Section)
+        # 4. Database Configuration (New Section)
         self.frame_db = ctk.CTkFrame(self)
-        self.frame_db.grid(row=7, column=0, padx=20, pady=10, sticky="ew")
+        self.frame_db.grid(row=5, column=0, padx=20, pady=10, sticky="ew")
         self.frame_db.grid_columnconfigure(1, weight=1)
 
         ctk.CTkLabel(self.frame_db, text="MySQL Configuration").grid(row=0, column=0, columnspan=2, pady=5)
@@ -109,9 +103,10 @@ class ETLApp(ctk.CTk):
         df.columns = df.columns.astype(str).str.strip()
         
         # --- 3. Trim Whitespace (Global) ---
-        # Apply strict string trimming to ALL object columns
+        # Apply strict string trimming to ALL object columns, verifying they are strings
         df_obj = df.select_dtypes(['object'])
-        df[df_obj.columns] = df_obj.apply(lambda x: x.str.strip())
+        if not df_obj.empty:
+             df[df_obj.columns] = df_obj.apply(lambda x: x.astype(str).str.strip())
         
         # --- 4. Remove Duplicates (Global) ---
         before_dedup = len(df)
@@ -119,90 +114,49 @@ class ETLApp(ctk.CTk):
         if len(df) < before_dedup:
             self.log(f"Removed {before_dedup - len(df)} duplicate rows.")
 
-        industry = self.option_industry.get()
+        if len(df) < before_dedup:
+            self.log(f"Removed {before_dedup - len(df)} duplicate rows.")
 
-        if industry == "Real Estate":
-            # --- Real Estate Specific Cleaning ---
-            self.log("Applying Real Estate cleaning rules...")
+        # --- F&B Specific Cleaning (Default) ---
+        self.log("Applying Indonesian Resto (F&B) cleaning rules...")
+        
+        # 1. Date Conversion (Robust)
+        if 'Date' in df.columns:
+            # Force datetime, coerce errors to NaT
+            df['Date'] = pd.to_datetime(df['Date'], dayfirst=True, errors='coerce')
+            # Remove rows with invalid dates
+            df = df.dropna(subset=['Date'])
             
-            # 1. Remove Duplicates
-            df.drop_duplicates(inplace=True)
-            
-            # 2. Key Columns check
-            if 'Price' in df.columns:
-                 # Ensure Price is numeric and positive
-                 if df['Price'].dtype == 'object':
-                     df['Price'] = df['Price'].astype(str).str.replace(r'[^\d.-]', '', regex=True)
-                 df['Price'] = pd.to_numeric(df['Price'], errors='coerce')
-                 df = df.dropna(subset=['Price'])
-                 df = df[df['Price'] > 0]
-            
-            if 'District' in df.columns:
-                df['District'] = df['District'].astype(str).str.strip().str.title()
+            # Extract Features
+            df['Day'] = df['Date'].dt.day_name()
+            df['Month'] = df['Date'].dt.month_name()
+            df['Year'] = df['Date'].dt.year
+            df['Days Number'] = df['Date'].dt.weekday + 1 # 1=Monday, 7=Sunday
+            df['Weekend/Weekday'] = df['Date'].dt.weekday.apply(lambda x: 'Weekend' if x >= 5 else 'Weekday')
+        
+        # 2. Numeric Conversion (Robust)
+        numeric_cols = ['Net sales', 'Quantity', 'Gross sales']
+        for col in numeric_cols:
+            if col in df.columns:
+                # Remove currency symbols/commas if present
+                if df[col].dtype == 'object':
+                     df[col] = df[col].astype(str).str.replace(r'[^\d.-]', '', regex=True)
+                df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0)
                 
-            # Impute missing numeric values
-            cols_to_zero = ['Parking', 'GrossArea', 'TotalArea', 'ConstructionYear', 'Garage', 'Elevator']
-            for col in cols_to_zero:
-                if col in df.columns:
-                    df[col] = df[col].fillna(0)
-                    
-            # Impute missing categorical
-            cols_to_unknown = ['EnergyCertificate', 'Condition']
-            for col in cols_to_unknown:
-                if col in df.columns:
-                    df[col] = df[col].fillna('Unknown')
-                    
-        elif industry == "Food & Beverage":
-            # --- F&B Specific Cleaning ---
-            self.log("Applying Food & Beverage cleaning rules...")
-            
-            # 1. Date Conversion (Robust)
-            if 'Date' in df.columns:
-                # Force datetime, coerce errors to NaT
-                df['Date'] = pd.to_datetime(df['Date'], dayfirst=True, errors='coerce')
-                # Remove rows with invalid dates
-                df = df.dropna(subset=['Date'])
-            
-            # 2. Numeric Conversion (Robust)
-            numeric_cols = ['Net sales', 'Quantity', 'Gross sales']
-            for col in numeric_cols:
-                if col in df.columns:
-                    # Remove currency symbols/commas if present (though filtered by global clean, safe to double check)
-                    if df[col].dtype == 'object':
-                         df[col] = df[col].astype(str).str.replace(r'[^\d.-]', '', regex=True)
-                    df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0)
-                    
-        else:
-            # --- Sales / General Cleaning (Existing Logic) ---
-            # 1. Convert Date
-            if 'Date' in df.columns:
-                # parsing with dayfirst=True is safer for international formats like DD/MM/YYYY
-                df['Date'] = pd.to_datetime(df['Date'], dayfirst=True, errors='coerce')
+        # 3. Filter Status
+        if 'Status' in df.columns:
+             # Clean formatting
+             df['Status'] = df['Status'].astype(str).str.strip().str.title()
+             # Filter out Void
+             df = df[~df['Status'].isin(['Void'])]
                 
-                # Remove rows with invalid dates
-                df = df.dropna(subset=['Date'])
-                
-                # 2. Extract Features
-                df['Day'] = df['Date'].dt.day_name()
-                df['Month'] = df['Date'].dt.month_name()
-                df['Year'] = df['Date'].dt.year
-                df['Days Number'] = df['Date'].dt.weekday + 1 # 1=Monday, 7=Sunday
-                df['Weekend/Weekday'] = df['Date'].dt.weekday.apply(lambda x: 'Weekend' if x >= 5 else 'Weekday')
-            
-            # 3. Filter Status
-            if 'Status' in df.columns:
-                # Clean formatting just in case
-                df['Status'] = df['Status'].astype(str).str.strip().str.title()
-                # Filter out Void (Keep Closed as they seem to be valid transactions)
-                df = df[~df['Status'].isin(['Void'])]
-                
-            # 4. Remove Invalid/Garbage Columns
-            # Sometimes Excel/CSV import reads the header row as a column if file is malformed
-            # Loop through columns and drop if length > 100 and contains commas (heuristic)
-            cols_to_drop = [c for c in df.columns if len(str(c)) > 50 and ',' in str(c)]
-            if cols_to_drop:
-                self.log(f"Dropping suspicious columns: {cols_to_drop}")
-                df = df.drop(columns=cols_to_drop)
+        # 4. Remove Invalid/Garbage Columns
+        # Sometimes Excel/CSV import reads the header row as a column if file is malformed
+        # Loop through columns and drop if length > 100 and contains commas (heuristic)
+        cols_to_drop = [c for c in df.columns if len(str(c)) > 50 and ',' in str(c)]
+        if cols_to_drop:
+            self.log(f"Dropping suspicious columns: {cols_to_drop}")
+            df = df.drop(columns=cols_to_drop)
 
         self.log(f"Cleaned data: {len(df)} rows remaining (removed {original_count - len(df)}).")
         return df
@@ -270,8 +224,9 @@ class ETLApp(ctk.CTk):
             shutil.copy2(self.file_path, backup_path)
             self.log(f"Backup saved to: {backup_path}")
 
-            industry = self.option_industry.get()
-            self.log(f"Processing data for Industry: {industry}...")
+            # industry = self.option_industry.get() 
+            industry = "Sales"
+            self.log(f"Processing Raw Data for: {industry}...")
 
             # 1. Load Data
             self.log("Reading data...")

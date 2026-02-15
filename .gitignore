@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Data Analyst Specific
+2_Excel/backup/
+7_RAW/
+*.csv
+*.xlsx
+*.xls
+
+# Dashboard Data (Generated)
+6_Dashboard/static/data.json
+
+# IDE
+.vscode/
+.idea/
