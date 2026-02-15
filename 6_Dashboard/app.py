@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify, redirect, url_for
 import pandas as pd
 import json
 import plotly
+import plotly.graph_objects as go
 import plotly.express as px
 import os
 
@@ -42,11 +43,31 @@ def index():
             return df
         
         # Ensure Date is datetime
-        df['Date'] = pd.to_datetime(df['Date'], dayfirst=True, errors='coerce')
+        df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
         latest_date = df['Date'].max()
+        print(f"DEBUG: Period={period}, Latest Date={latest_date}, Rows Before={len(df)}")
         
         if pd.isna(latest_date):
+            print("DEBUG: Latest date is NaT")
             return df
+
+        
+        # Strict Data Sufficiency Check
+        # "Do not show data that is not available, such if the data have not quarterly or so"
+        data_duration_days = (latest_date - df['Date'].min()).days
+        
+        required_days_map = {
+            'weekly': 6,       # Need near a full week
+            'monthly': 27,     # Need near a full month
+            '3month': 88,      # Need near 3 months
+            '6month': 178,     # Need near 6 months
+            'yearly': 360      # Need near a year
+        }
+        
+        min_required = required_days_map.get(period, 0)
+        if data_duration_days < min_required:
+            print(f"DEBUG: Insufficient data for {period}. Have {data_duration_days} days, need {min_required} days.")
+            return df.iloc[0:0] # Return empty DataFrame
 
         if period == 'daily':
             # Strict: LATEST DATE ONLY (1 Day)
@@ -97,7 +118,12 @@ def index():
                     # Convert 'Date' back to datetime
                     if 'Date' in df.columns:
                         df['Date'] = pd.to_datetime(df['Date'], dayfirst=True, errors='coerce')
-                        
+                    # --- Data Type Conversion ---
+                    # Convert 'Date' back to datetime
+                    if 'Date' in df.columns:
+                        # Remove dayfirst=True as JSON dates are likely ISO/YYYY-MM-DD
+                        df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
+                    
                     # Convert Numeric columns
                     numeric_cols = ['Net sales', 'Quantity', 'Gross sales', 'Price']
                     for col in numeric_cols:
@@ -112,8 +138,16 @@ def index():
                     # Use filtered_df for all subsequent calculations
                     df = filtered_df 
                     
+                    # --- CHECK IF DATA IS AVAILABLE ---
+                    if df.empty:
+                        title = "NO DATA AVAILABLE"
+                        fig_trend = px.line(title=title)
+                        fig_items = px.bar(title=title) 
+                        fig_dining = px.pie(title=title)
+                        recommendation_text = "Insufficient data to generate analysis for this period."
+                    
                     # --- 1. Dynamic Sales Trend based on Period ---
-                    if 'Date' in df.columns and 'Net sales' in df.columns:
+                    elif 'Date' in df.columns and 'Net sales' in df.columns:
                         
                         trend_df = pd.DataFrame()
                         x_col = 'Date'
@@ -164,27 +198,35 @@ def index():
                             fig_trend.update_yaxes(tickprefix="Rp ", tickformat=".2s")
                         else:
                             fig_trend = px.line(trend_df, x=x_col, y="Net sales", title=title, markers=True)
+                        
+                    # --- Helper: Period Label for other charts ---
+                    period_map = {
+                        'daily': 'Daily', 'weekly': 'Weekly', 'monthly': 'Monthly', 
+                        '3month': 'Quarterly', '6month': 'Half-Yearly', 'yearly': 'Yearly'
+                    }
+                    p_label = period_map.get(period, 'Period')
 
                     # --- 2. Top Selling Items OR Type Distribution ---
                     if 'Item' in df.columns and 'Quantity' in df.columns:
                         top_items = df.groupby('Item')['Quantity'].sum().reset_index().sort_values(by='Quantity', ascending=False).head(5)
+                        print(f"DEBUG: Top Items ({p_label}):\n{top_items}") # DEBUG
                         fig_items = px.bar(top_items, x="Quantity", y="Item", orientation='h', 
-                                         title="Top 5 Items (Qty)", text='Quantity')
+                                         title=f"Top 5 Items ({p_label})", text='Quantity')
                         fig_items.update_layout(yaxis={'categoryorder':'total ascending'})
                     elif 'Type' in df.columns:
                         # Real Estate: Property Type Count
                         type_counts = df['Type'].value_counts().reset_index()
                         type_counts.columns = ['Type', 'Count']
                         fig_items = px.pie(type_counts, names='Type', values='Count', 
-                                         title="Property Type Distribution")
-
+                                         title=f"Property Type Distribution ({p_label})")
+                        
                     # --- 3. Dining Option OR Condition OR Avg Sales by Day ---
                     # Logic: Try to produce *some* 3rd chart
                     if 'Dining option' in df.columns:
                          dining_counts = df['Dining option'].value_counts().reset_index()
                          dining_counts.columns = ['Dining Option', 'Count']
                          fig_dining = px.pie(dining_counts, values='Count', names='Dining Option', 
-                                           title="Dine In vs Take Away")
+                                           title=f"Dine In vs Take Away ({p_label})")
                     elif 'Net sales' in df.columns and 'Date' in df.columns:
                          # F&B: Sales by Day of Week (Always useful)
                          if 'Day' not in df.columns: # Check if already created
@@ -193,21 +235,49 @@ def index():
                          daily_avg = df.groupby('Day')['Net sales'].mean().reindex(day_order).reset_index()
                          
                          fig_dining = px.bar(daily_avg, x='Day', y='Net sales',
-                                           title="Avg Sales by Day (Selected Period)", text_auto='.2s')
+                                           title=f"Avg Sales by Day ({p_label})", text_auto='.2s')
                          fig_dining.update_yaxes(tickprefix="Rp ", tickformat=".2s")
                     elif 'Condition' in df.columns:
                          # Real Estate: Condition
                          condition_counts = df['Condition'].value_counts().reset_index()
                          condition_counts.columns = ['Condition', 'Count']
                          fig_dining = px.bar(condition_counts, x='Condition', y='Count',
-                                           title="Property Condition", text='Count')
+                                           title=f"Property Condition ({p_label})", text='Count')
                     elif 'Town' in df.columns:
                          # Alternative: Top 10 Towns
                          top_towns = df['Town'].value_counts().head(10).reset_index()
                          top_towns.columns = ['Town', 'Count']
                          fig_dining = px.bar(top_towns, x='Count', y='Town', orientation='h',
-                                           title="Top 10 Towns", text='Count')
+                                           title=f"Top 10 Towns ({p_label})", text='Count')
                          fig_dining.update_layout(yaxis={'categoryorder':'total ascending'})
+
+                    # --- 4. Quantity per Item (Full List TABLE) ---
+                    # User Request: "Top Items sells each item... example Top Items (Daily): Item Quantity..."
+                    if 'Item' in df.columns and 'Quantity' in df.columns:
+                        # Sort Descending (Top Items first)
+                        item_qty = df.groupby('Item')['Quantity'].sum().reset_index().sort_values(by='Quantity', ascending=False)
+                        
+                        fig_weekly = go.Figure(data=[go.Table(
+                            header=dict(values=['<b>Item</b>', '<b>Quantity</b>'],
+                                        fill_color='paleturquoise',
+                                        align='left',
+                                        font=dict(size=12)),
+                            cells=dict(values=[item_qty['Item'], item_qty['Quantity']],
+                                       fill_color='lavender',
+                                       align='left',
+                                       font=dict(size=11))
+                        )])
+                        
+                        # Calculate height based on number of items (approx 30px per row + header)
+                        # Min height 400, Max height 800 (scrollable)
+                        num_items = len(item_qty)
+                        table_height = max(400, min(800, num_items * 30 + 50))
+                        
+                        fig_weekly.update_layout(
+                            title=f"Top Items Sold ({p_label})",
+                            height=table_height,
+                            margin=dict(l=10, r=10, t=40, b=10)
+                        )
 
         except Exception as e:
             print(f"Error processing data: {e}")
@@ -230,7 +300,7 @@ def index():
     graph1JSON = json.dumps(fig_trend, cls=plotly.utils.PlotlyJSONEncoder)
     graph2JSON = json.dumps(fig_items, cls=plotly.utils.PlotlyJSONEncoder)
     graph3JSON = json.dumps(fig_dining, cls=plotly.utils.PlotlyJSONEncoder)
-    graph4JSON = json.dumps(fig_weekly, cls=plotly.utils.PlotlyJSONEncoder) if fig_weekly else {}
+    graph4JSON = json.dumps(fig_weekly, cls=plotly.utils.PlotlyJSONEncoder)
 
     return render_template('index.html', 
                          graph1JSON=graph1JSON, 

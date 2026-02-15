@@ -217,13 +217,13 @@
               <div class="col-lg-6">
                 <div class="card">
                   <div class="card-header border-0">
-                    <h3 class="card-title">Weekly Sales Trend</h3>
+                    <h3 class="card-title">Item Sales Quantity</h3>
                   </div>
                   <div class="card-body">
                     <div
-                      id="chart_weekly"
+                      id="chart_quantity"
                       class="chart"
-                      style="height: 300px"
+                      style="height: 800px"
                     ></div>
                   </div>
                 </div>
@@ -245,7 +245,7 @@
                   Plotly.newPlot('chart_dining', chart3.data, chart3.layout);
                   
                   if (chart4 && Object.keys(chart4).length > 0) {
-                      Plotly.newPlot('chart_weekly', chart4.data, chart4.layout);
+                      Plotly.newPlot('chart_quantity', chart4.data, chart4.layout);
                   }
             </script>
           </div>

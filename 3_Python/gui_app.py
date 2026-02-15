@@ -10,6 +10,8 @@ import subprocess
 import time
 import sys
 from sklearn.model_selection import train_test_split
+import shutil
+from datetime import datetime
 from sqlalchemy import create_engine, text
 
 ctk.set_appearance_mode("System")
@@ -95,9 +97,28 @@ class ETLApp(ctk.CTk):
         self.textbox_log.see("end")
 
     def clean_data(self, df):
-        self.log("Starting data cleaning...")
+        self.log("Starting advanced data cleaning pipeline...")
         original_count = len(df)
         
+        # --- 1. Remove Empty Rows/Columns ---
+        df.dropna(how='all', inplace=True) # Rows
+        df.dropna(axis=1, how='all', inplace=True) # Columns
+        
+        # --- 2. Standardize Headers ---
+        # Strip whitespace from column names to avoid " Date" vs "Date" issues
+        df.columns = df.columns.astype(str).str.strip()
+        
+        # --- 3. Trim Whitespace (Global) ---
+        # Apply strict string trimming to ALL object columns
+        df_obj = df.select_dtypes(['object'])
+        df[df_obj.columns] = df_obj.apply(lambda x: x.str.strip())
+        
+        # --- 4. Remove Duplicates (Global) ---
+        before_dedup = len(df)
+        df.drop_duplicates(inplace=True)
+        if len(df) < before_dedup:
+            self.log(f"Removed {before_dedup - len(df)} duplicate rows.")
+
         industry = self.option_industry.get()
 
         if industry == "Real Estate":
@@ -110,6 +131,8 @@ class ETLApp(ctk.CTk):
             # 2. Key Columns check
             if 'Price' in df.columns:
                  # Ensure Price is numeric and positive
+                 if df['Price'].dtype == 'object':
+                     df['Price'] = df['Price'].astype(str).str.replace(r'[^\d.-]', '', regex=True)
                  df['Price'] = pd.to_numeric(df['Price'], errors='coerce')
                  df = df.dropna(subset=['Price'])
                  df = df[df['Price'] > 0]
@@ -133,15 +156,20 @@ class ETLApp(ctk.CTk):
             # --- F&B Specific Cleaning ---
             self.log("Applying Food & Beverage cleaning rules...")
             
-            # 1. Date Conversion
+            # 1. Date Conversion (Robust)
             if 'Date' in df.columns:
-                df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
+                # Force datetime, coerce errors to NaT
+                df['Date'] = pd.to_datetime(df['Date'], dayfirst=True, errors='coerce')
+                # Remove rows with invalid dates
                 df = df.dropna(subset=['Date'])
             
-            # 2. Numeric Conversion
+            # 2. Numeric Conversion (Robust)
             numeric_cols = ['Net sales', 'Quantity', 'Gross sales']
             for col in numeric_cols:
                 if col in df.columns:
+                    # Remove currency symbols/commas if present (though filtered by global clean, safe to double check)
+                    if df[col].dtype == 'object':
+                         df[col] = df[col].astype(str).str.replace(r'[^\d.-]', '', regex=True)
                     df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0)
                     
         else:
@@ -217,14 +245,36 @@ class ETLApp(ctk.CTk):
 
     def process_data(self):
         if not self.file_path:
-            self.log("Error: No file selected.")
+            self.log("Error: Please select a file first.")
             return
-
-        industry = self.option_industry.get()
-        self.log(f"Processing data for Industry: {industry}...")
-
+            
         try:
+            # --- 0. BACKUP RAW DATA ---
+            self.log("Creating backup of raw data...")
+            
+            # Define backup directory: 2_Excel/backup (adjusting relative to script location or absolute)
+            # Assuming script is in 3_Python, backup should be in ../2_Excel/backup
+            # But let's check where we are running. User CWD is Data Analyst root.
+            # So 2_Excel/backup is correct relative to CWD.
+            backup_dir = os.path.join("2_Excel", "backup")
+            os.makedirs(backup_dir, exist_ok=True)
+            
+            # Generate feature filename: Original_YYYYMMDD_HHMMSS.ext
+            filename = os.path.basename(self.file_path)
+            name, ext = os.path.splitext(filename)
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            backup_filename = f"{name}_{timestamp}{ext}"
+            backup_path = os.path.join(backup_dir, backup_filename)
+            
+            # Copy file
+            shutil.copy2(self.file_path, backup_path)
+            self.log(f"Backup saved to: {backup_path}")
+
+            industry = self.option_industry.get()
+            self.log(f"Processing data for Industry: {industry}...")
+
             # 1. Load Data
+            self.log("Reading data...")
             if self.file_path.endswith(('.xlsx', '.xls')):
                 selected_sheet = self.option_sheet.get()
                 self.log(f"Reading sheet: {selected_sheet}...")
