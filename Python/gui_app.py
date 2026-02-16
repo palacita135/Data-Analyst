@@ -14,7 +14,9 @@ import shutil
 from datetime import datetime
 from sqlalchemy import create_engine, text
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
 
 ctk.set_appearance_mode("System")
 ctk.set_default_color_theme("blue")
@@ -45,12 +47,18 @@ class ETLApp(ctk.CTk):
         self.label_sheet.grid(row=3, column=0, padx=20, pady=(10, 0))
         self.option_sheet = ctk.CTkOptionMenu(self, values=["Sheet1"])
         self.option_sheet.grid(row=4, column=0, padx=20, pady=5)
-        self.label_sheet.grid_remove() # Hide initially
         self.option_sheet.grid_remove() # Hide initially
+
+        # 3.5. OR Google Sheet URL (Source)
+        self.label_or = ctk.CTkLabel(self, text="- OR -")
+        self.label_or.grid(row=5, column=0, pady=(10, 0))
+        
+        self.entry_source_url = ctk.CTkEntry(self, placeholder_text="Paste Google Sheet URL (Source Data) here...")
+        self.entry_source_url.grid(row=6, column=0, padx=20, pady=(5, 10), sticky="ew")
 
         # 4. Database Configuration (New Section)
         self.frame_db = ctk.CTkFrame(self)
-        self.frame_db.grid(row=5, column=0, padx=20, pady=10, sticky="ew")
+        self.frame_db.grid(row=7, column=0, padx=20, pady=10, sticky="ew")
         self.frame_db.grid_columnconfigure(1, weight=1)
 
         ctk.CTkLabel(self.frame_db, text="MySQL Configuration").grid(row=0, column=0, columnspan=2, pady=5)
@@ -76,32 +84,32 @@ class ETLApp(ctk.CTk):
 
         # 5. Google Sheets Configuration (New Section)
         self.frame_google = ctk.CTkFrame(self)
-        self.frame_google.grid(row=6, column=0, padx=20, pady=10, sticky="ew")
+        self.frame_google.grid(row=8, column=0, padx=20, pady=10, sticky="ew")
         self.frame_google.grid_columnconfigure(1, weight=1)
 
         ctk.CTkLabel(self.frame_google, text="Google Sheets Configuration").grid(row=0, column=0, columnspan=2, pady=5)
         
-        ctk.CTkLabel(self.frame_google, text="Sheet Name:").grid(row=1, column=0, padx=5, pady=2, sticky="e")
+        ctk.CTkLabel(self.frame_google, text="Sheet Name or URL:").grid(row=1, column=0, padx=5, pady=2, sticky="e")
         self.entry_sheet_name = ctk.CTkEntry(self.frame_google, placeholder_text="Sales Data Analysis")
         self.entry_sheet_name.grid(row=1, column=1, padx=5, pady=2, sticky="ew")
         self.entry_sheet_name.insert(0, "Sales Data Analysis")
         
-        ctk.CTkLabel(self.frame_google, text="JSON Key:").grid(row=2, column=0, padx=5, pady=2, sticky="e")
-        self.entry_json_key = ctk.CTkEntry(self.frame_google, placeholder_text="credentials.json")
+        ctk.CTkLabel(self.frame_google, text="Client Secret JSON:").grid(row=2, column=0, padx=5, pady=2, sticky="e")
+        self.entry_json_key = ctk.CTkEntry(self.frame_google, placeholder_text="client_secret.json")
         self.entry_json_key.grid(row=2, column=1, padx=5, pady=2, sticky="ew")
         # Default to root or Python dir
-        default_cred = "credentials.json"
-        if os.path.exists(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "credentials.json")):
-             default_cred = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "credentials.json")
+        default_cred = "client_secret.json"
+        if os.path.exists(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "client_secret.json")):
+             default_cred = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "client_secret.json")
         self.entry_json_key.insert(0, default_cred)
 
         # 6. Process Data
         self.btn_process = ctk.CTkButton(self, text="Process & Upload to MySQL", command=self.process_data)
-        self.btn_process.grid(row=8, column=0, padx=20, pady=20)
+        self.btn_process.grid(row=10, column=0, padx=20, pady=20)
         
         # 7. Log Output
         self.textbox_log = ctk.CTkTextbox(self, width=600, height=150)
-        self.textbox_log.grid(row=9, column=0, padx=20, pady=20)
+        self.textbox_log.grid(row=11, column=0, padx=20, pady=20)
 
         self.file_path = None
         
@@ -221,44 +229,101 @@ class ETLApp(ctk.CTk):
         thread.start()
 
     def process_data(self):
-        if not self.file_path:
-            self.log("Error: Please select a file first.")
+        source_url = self.entry_source_url.get()
+        
+        if not self.file_path and not source_url:
+            self.log("Error: Please select a file OR enter a Google Sheet URL.")
             return
             
         try:
-            # --- 0. BACKUP RAW DATA ---
-            self.log("Creating backup of raw data...")
+            # --- 1. Load Data (File vs URL) ---
+            df = None
             
-            # Define backup directory: 2_Excel/backup (adjusting relative to script location or absolute)
-            # Assuming script is in 3_Python, backup should be in ../2_Excel/backup
-            # But let's check where we are running. User CWD is Data Analyst root.
-            # So 2_Excel/backup is correct relative to CWD.
-            backup_dir = os.path.join("Excel", "backup")
-            os.makedirs(backup_dir, exist_ok=True)
-            
-            # Generate feature filename: Original_YYYYMMDD_HHMMSS.ext
-            filename = os.path.basename(self.file_path)
-            name, ext = os.path.splitext(filename)
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            backup_filename = f"{name}_{timestamp}{ext}"
-            backup_path = os.path.join(backup_dir, backup_filename)
-            
-            # Copy file
-            shutil.copy2(self.file_path, backup_path)
-            self.log(f"Backup saved to: {backup_path}")
+            if source_url:
+                self.log(f"Loading data from Google Sheet URL: {source_url}...")
+                try:
+                    # Use the same credentials helper
+                    gs_json_key = self.entry_json_key.get()
+                    
+                    # OAuth 2.0 Flow
+                    SCOPES = ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive']
+                    creds = None
+                    token_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'token.json')
+                    
+                    # Load existing token
+                    if os.path.exists(token_path):
+                        creds = Credentials.from_authorized_user_file(token_path, SCOPES)
+                    
+                    # If no valid token, let user log in
+                    if not creds or not creds.valid:
+                        if creds and creds.expired and creds.refresh_token:
+                            creds.refresh(Request())
+                        else:
+                            if not os.path.exists(gs_json_key):
+                                 alt_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), gs_json_key)
+                                 if os.path.exists(alt_path):
+                                     gs_json_key = alt_path
+                                 else: # Try root
+                                     root_cred = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "client_secret.json")
+                                     if os.path.exists(root_cred):
+                                         gs_json_key = root_cred
+                                     else:
+                                         raise FileNotFoundError(f"Client Secret file not found: {gs_json_key}")
 
+                            flow = InstalledAppFlow.from_client_secrets_file(gs_json_key, SCOPES)
+                            creds = flow.run_local_server(port=0)
+                            
+                        # Save the credentials for the next run
+                        with open(token_path, 'w') as token:
+                            token.write(creds.to_json())
+                    
+                    client = gspread.authorize(creds)
+                    
+                    sheet = client.open_by_url(source_url)
+                    worksheet = sheet.get_worksheet(0) # Default to first sheet
+                    data = worksheet.get_all_records()
+                    df = pd.DataFrame(data)
+                    self.log(f"Loaded {len(df)} rows from Google Sheets.")
+                    
+                    # Backup to local CSV
+                    backup_dir = os.path.join("Excel", "backup")
+                    os.makedirs(backup_dir, exist_ok=True)
+                    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                    backup_filename = f"GoogleSheet_Source_{timestamp}.csv"
+                    backup_path = os.path.join(backup_dir, backup_filename)
+                    df.to_csv(backup_path, index=False)
+                    self.log(f"Backup saved to: {backup_path}")
+                    
+                except Exception as e:
+                    self.log(f"Error loading from Google Sheets: {e}")
+                    return
+
+            else:
+                # --- 0. BACKUP RAW DATA (File) ---
+                self.log("Creating backup of raw data...")
+                backup_dir = os.path.join("Excel", "backup")
+                os.makedirs(backup_dir, exist_ok=True)
+                
+                filename = os.path.basename(self.file_path)
+                name, ext = os.path.splitext(filename)
+                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                backup_filename = f"{name}_{timestamp}{ext}"
+                backup_path = os.path.join(backup_dir, backup_filename)
+                shutil.copy2(self.file_path, backup_path)
+                self.log(f"Backup saved to: {backup_path}")
+
+                self.log("Reading data from file...")
+                if self.file_path.endswith(('.xlsx', '.xls')):
+                    selected_sheet = self.option_sheet.get()
+                    self.log(f"Reading sheet: {selected_sheet}...")
+                    df = pd.read_excel(self.file_path, sheet_name=selected_sheet)
+                else:
+                    df = pd.read_csv(self.file_path)
+            
             # industry = self.option_industry.get() 
             industry = "Sales"
             self.log(f"Processing Raw Data for: {industry}...")
-
-            # 1. Load Data
-            self.log("Reading data...")
-            if self.file_path.endswith(('.xlsx', '.xls')):
-                selected_sheet = self.option_sheet.get()
-                self.log(f"Reading sheet: {selected_sheet}...")
-                df = pd.read_excel(self.file_path, sheet_name=selected_sheet)
-            else:
-                df = pd.read_csv(self.file_path)
+            
             self.log(f"Loaded {len(df)} rows. Shape: {df.shape}")
             self.log(f"Columns: {df.columns.tolist()}")
 
@@ -338,6 +403,92 @@ class ETLApp(ctk.CTk):
                     self.log(f"MySQL Error (Skipping upload): {db_err}")
             else:
                  self.log("Skipping MySQL upload (Configuration missing).")
+
+            # 3.5 Upload to Google Sheets
+            gs_sheet_name = self.entry_sheet_name.get()
+            gs_json_key = self.entry_json_key.get()
+            
+            if gs_sheet_name and gs_json_key:
+                self.log(f"Attempting Google Sheets upload to '{gs_sheet_name}'...")
+                try:
+                    # OAuth 2.0 Flow
+                    SCOPES = ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive']
+                    creds = None
+                    token_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'token.json')
+                    
+                    # Load existing token
+                    if os.path.exists(token_path):
+                        creds = Credentials.from_authorized_user_file(token_path, SCOPES)
+                    
+                    # If no valid token, let user log in
+                    if not creds or not creds.valid:
+                        if creds and creds.expired and creds.refresh_token:
+                            creds.refresh(Request())
+                        else:
+                            if not os.path.exists(gs_json_key):
+                                 alt_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), gs_json_key)
+                                 if os.path.exists(alt_path):
+                                     gs_json_key = alt_path
+                                 else: # Try root
+                                     root_cred = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "client_secret.json")
+                                     if os.path.exists(root_cred):
+                                         gs_json_key = root_cred
+                                     else:
+                                         raise FileNotFoundError(f"Client Secret file not found: {gs_json_key}")
+
+                            flow = InstalledAppFlow.from_client_secrets_file(gs_json_key, SCOPES)
+                            creds = flow.run_local_server(port=0)
+                            
+                        # Save the credentials for the next run
+                        with open(token_path, 'w') as token:
+                            token.write(creds.to_json())
+
+                    client = gspread.authorize(creds)
+                    
+                    # Open the sheet
+                    try:
+                        if gs_sheet_name.startswith("http"):
+                             self.log(f"Detected URL. Opening by URL...")
+                             sheet = client.open_by_url(gs_sheet_name)
+                        else:
+                             sheet = client.open(gs_sheet_name)
+                        
+                        try:
+                            worksheet = sheet.worksheet(industry)
+                        except gspread.WorksheetNotFound:
+                            worksheet = sheet.add_worksheet(title=industry, rows="100", cols="20")
+                    except gspread.SpreadsheetNotFound:
+                        if gs_sheet_name.startswith("http"):
+                             self.log("Error: Could not open Spreadsheet by URL. Check permissions.")
+                             raise
+                        else:
+                            self.log(f"Spreadsheet '{gs_sheet_name}' not found. Creating it...")
+                            sheet = client.create(gs_sheet_name)
+                            sheet.share(creds.service_account_email if hasattr(creds, 'service_account_email') else 'palacita135@gmail.com', perm_type='user', role='owner') 
+                            # Note: With OAuth user login, the user creates it, so they own it automatically. Sharing step might be redundant or different.
+                            try:
+                                worksheet = sheet.worksheet(industry)
+                            except gspread.WorksheetNotFound:
+                                worksheet = sheet.add_worksheet(title=industry, rows="100", cols="20")
+                            self.log(f"Created new spreadsheet '{gs_sheet_name}'.")
+
+                    # Clear existing content
+                    worksheet.clear()
+                    
+                    # Prepare data (Convert to list of lists, handle NaN)
+                    df_upload = df.fillna("")
+                    for col in df_upload.select_dtypes(include=['datetime64']).columns:
+                        df_upload[col] = df_upload[col].astype(str)
+
+                    # Update header
+                    worksheet.update([df_upload.columns.values.tolist()] + df_upload.values.tolist())
+                    
+                    self.log(f"Successfully uploaded {len(df)} rows to Google Sheet '{gs_sheet_name}' (Worksheet: {industry})")
+                    
+                except Exception as gs_e:
+                    self.log(f"Google Sheets Error: {gs_e}")
+            else:
+                self.log("Skipping Google Sheets upload (Configuration missing).")
 
             # 4. Send to Dashboard (Mock API Call / Shared File)
             # Create a serializable version of the dataframe head (Increase to 5000 for meaningful charts)
