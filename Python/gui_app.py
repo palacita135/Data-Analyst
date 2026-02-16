@@ -118,6 +118,10 @@ class ETLApp(ctk.CTk):
         self.start_flask_server()
 
     def log(self, message):
+        # Use after to schedule GUI update on main thread
+        self.after(0, lambda: self._log_internal(message))
+
+    def _log_internal(self, message):
         self.textbox_log.insert("end", message + "\n")
         self.textbox_log.see("end")
 
@@ -229,6 +233,11 @@ class ETLApp(ctk.CTk):
         thread.start()
 
     def process_data(self):
+        # Run processing in a separate thread to keep GUI responsive
+        thread = threading.Thread(target=self._process_data_thread, daemon=True)
+        thread.start()
+
+    def _process_data_thread(self):
         source_url = self.entry_source_url.get()
         
         if not self.file_path and not source_url:
@@ -363,7 +372,13 @@ class ETLApp(ctk.CTk):
             self.log(f"Split data: {len(train_df)} training, {len(test_df)} testing rows.")
             
             # Save split data (optional)
-            output_dir = os.path.join(os.path.dirname(self.file_path), "processed")
+            if self.file_path:
+                 base_dir = os.path.dirname(self.file_path)
+            else:
+                 # Default to 'Excel' folder in project root if using URL
+                 base_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "Excel")
+            
+            output_dir = os.path.join(base_dir, "processed")
             os.makedirs(output_dir, exist_ok=True)
             train_df.to_csv(os.path.join(output_dir, "train.csv"), index=False)
             test_df.to_csv(os.path.join(output_dir, "test.csv"), index=False)
