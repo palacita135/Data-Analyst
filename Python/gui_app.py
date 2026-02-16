@@ -13,6 +13,8 @@ from sklearn.model_selection import train_test_split
 import shutil
 from datetime import datetime
 from sqlalchemy import create_engine, text
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 ctk.set_appearance_mode("System")
 ctk.set_default_color_theme("blue")
@@ -71,6 +73,27 @@ class ETLApp(ctk.CTk):
         self.entry_db = ctk.CTkEntry(self.frame_db, placeholder_text="data_analyst_db")
         self.entry_db.grid(row=4, column=1, padx=5, pady=2, sticky="ew")
         self.entry_db.insert(0, "data_analyst_db")
+
+        # 5. Google Sheets Configuration (New Section)
+        self.frame_google = ctk.CTkFrame(self)
+        self.frame_google.grid(row=6, column=0, padx=20, pady=10, sticky="ew")
+        self.frame_google.grid_columnconfigure(1, weight=1)
+
+        ctk.CTkLabel(self.frame_google, text="Google Sheets Configuration").grid(row=0, column=0, columnspan=2, pady=5)
+        
+        ctk.CTkLabel(self.frame_google, text="Sheet Name:").grid(row=1, column=0, padx=5, pady=2, sticky="e")
+        self.entry_sheet_name = ctk.CTkEntry(self.frame_google, placeholder_text="Sales Data Analysis")
+        self.entry_sheet_name.grid(row=1, column=1, padx=5, pady=2, sticky="ew")
+        self.entry_sheet_name.insert(0, "Sales Data Analysis")
+        
+        ctk.CTkLabel(self.frame_google, text="JSON Key:").grid(row=2, column=0, padx=5, pady=2, sticky="e")
+        self.entry_json_key = ctk.CTkEntry(self.frame_google, placeholder_text="credentials.json")
+        self.entry_json_key.grid(row=2, column=1, padx=5, pady=2, sticky="ew")
+        # Default to root or Python dir
+        default_cred = "credentials.json"
+        if os.path.exists(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "credentials.json")):
+             default_cred = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "credentials.json")
+        self.entry_json_key.insert(0, default_cred)
 
         # 6. Process Data
         self.btn_process = ctk.CTkButton(self, text="Process & Upload to MySQL", command=self.process_data)

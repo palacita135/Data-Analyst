@@ -9,3 +9,5 @@ jupyter
 customtkinter
 requests
 pymysql
+gspread
+oauth2client
