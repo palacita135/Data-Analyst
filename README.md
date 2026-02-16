@@ -46,6 +46,7 @@ This application automates the workflow for analyzing sales data from an Indones
 
 - Python 3.10+
 - Pandas, Plotly, Flask, Scikit-Learn
+- XAMPP for MySQL Database
 
 ---
 
