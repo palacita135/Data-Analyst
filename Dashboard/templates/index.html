@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DATA ANALYST SALES</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Theme style -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css"
+    />
+  </head>
+  <body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+      <!-- Navbar -->
+      <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"
+              ><i class="fas fa-bars"></i
+            ></a>
+          </li>
+          <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">DATA ANALYST SALES</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main Sidebar Container -->
+      <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="#" class="brand-link">
+          <span class="brand-text font-weight-light">Data Analyst</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+          <!-- Sidebar Menu -->
+          <nav class="mt-2">
+            <ul
+              class="nav nav-pills nav-sidebar flex-column"
+              data-widget="treeview"
+              role="menu"
+              data-accordion="false"
+            >
+              <li class="nav-item">
+                <a href="/" class="nav-link active">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>Dashboard Overview</p>
+                </a>
+              </li>
+              <li class="nav-header">REPORTS</li>
+              <li class="nav-item">
+                <a href="/report/daily" class="nav-link">
+                  <i class="nav-icon fas fa-calendar-day"></i>
+                  <p>Daily Analysis</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/report/weekly" class="nav-link">
+                  <i class="nav-icon fas fa-calendar-week"></i>
+                  <p>Weekly Analysis</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/report/monthly" class="nav-link">
+                  <i class="nav-icon fas fa-calendar-alt"></i>
+                  <p>Monthly Analysis</p>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a href="/report/3month" class="nav-link">
+                  <i class="nav-icon fas fa-chart-pie"></i>
+                  <p>Quarterly (3 Month)</p>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a href="/report/6month" class="nav-link">
+                  <i class="nav-icon fas fa-chart-area"></i>
+                  <p>Half-Yearly (6 Month)</p>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a href="/report/yearly" class="nav-link">
+                  <i class="nav-icon fas fa-chart-line"></i>
+                  <p>Yearly Analysis</p>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1>Dashboard</h1>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+              <div class="col-lg-12">
+                 <div class="card bg-gradient-success">
+                  <div class="card-header border-0">
+                    <h3 class="card-title">
+                      <i class="fas fa-lightbulb mr-1"></i>
+                      Strategic Recommendations
+                    </h3>
+                  </div>
+                  <div class="card-body">
+                    <p class="card-text" id="recommendation-text">
+                        {{ recommendation | safe | default('Select a report from the sidebar to see specific actionable insights.') }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                  <div class="inner">
+                    <h3>{{ total_orders | default('0') }}</h3>
+                    <p>Total Transactions</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-bag"></i>
+                  </div>
+                </div>
+              </div>
+               <!-- ./col -->
+               <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                  <div class="inner">
+                    <h3>{{ total_revenue | default('0') }}</h3>
+                    <p>Total Revenue</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-cash"></i>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Chart 1: Sales Trend -->
+              <div class="col-lg-12">
+                <div class="card">
+                  <div class="card-header border-0">
+                    <h3 class="card-title">{{ chart1_title | default('Sales Revenue Trend') }}</h3>
+                  </div>
+                  <div class="card-body">
+                    <div
+                      id="chart_trend"
+                      class="chart"
+                      style="height: 300px"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Chart 2: Top Items -->
+              <div class="col-lg-6">
+                <div class="card">
+                  <div class="card-header border-0">
+                    <h3 class="card-title">Top Selling Items</h3>
+                  </div>
+                  <div class="card-body">
+                    <div
+                      id="chart_items"
+                      class="chart"
+                      style="height: 300px"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Chart 3: Dining Option -->
+              <div class="col-lg-6">
+                <div class="card">
+                  <div class="card-header border-0">
+                    <h3 class="card-title">Dining Options</h3>
+                  </div>
+                  <div class="card-body">
+                    <div
+                      id="chart_dining"
+                      class="chart"
+                      style="height: 300px"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <!-- Chart 4: Weekly Trend -->
+              <div class="col-lg-6">
+                <div class="card">
+                  <div class="card-header border-0">
+                    <h3 class="card-title">Item Sales Quantity</h3>
+                  </div>
+                  <div class="card-body">
+                    <div
+                      id="chart_quantity"
+                      class="chart"
+                      style="height: 800px"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <!-- /.row -->
+
+            <!-- Plotly Script -->
+            <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+            <script type="text/javascript">
+                  var chart1 = {{ graph1JSON | safe }};
+                  var chart2 = {{ graph2JSON | safe }};
+                  var chart3 = {{ graph3JSON | safe }};
+                  var chart4 = {{ graph4JSON | safe }};
+
+                  Plotly.newPlot('chart_trend', chart1.data, chart1.layout);
+                  Plotly.newPlot('chart_items', chart2.data, chart2.layout);
+                  Plotly.newPlot('chart_dining', chart3.data, chart3.layout);
+                  
+                  if (chart4 && Object.keys(chart4).length > 0) {
+                      Plotly.newPlot('chart_quantity', chart4.data, chart4.layout);
+                  }
+            </script>
+          </div>
+          <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+      </div>
+
+      <!-- Main Footer -->
+      <footer class="main-footer">
+        <div class="float-right d-none d-sm-inline">Data Analyst Workflow</div>
+        <strong
+          >Copyright &copy; 2026
+          <a href="https://adminlte.io">AdminLTE.io</a>.</strong
+        >
+        All rights reserved.
+      </footer>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Chat Widget -->
+    <div id="chat-widget" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+        <button id="chat-toggle" class="btn btn-primary btn-lg rounded-circle shadow" onclick="toggleChat()">
+            <i class="fas fa-comment-dots"></i>
+        </button>
+        
+        <div id="chat-window" class="card shadow" style="display: none; width: 300px; height: 400px; position: absolute; bottom: 60px; right: 0;">
+            <div class="card-header bg-primary text-white">
+                <h3 class="card-title"><i class="fas fa-robot mr-2"></i>Data Assistant</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool text-white" onclick="toggleChat()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body p-2" id="chat-messages" style="height: 300px; overflow-y: auto; background-color: #f4f6f9;">
+                <div class="direct-chat-msg">
+                    <div class="direct-chat-infos clearfix">
+                        <span class="direct-chat-name float-left">AI</span>
+                    </div>
+                    <div class="direct-chat-text">
+                        Hello! Ask me about Top Items, Revenue, or Predictions.
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer p-2">
+                <div class="input-group">
+                    <input type="text" id="chat-input" class="form-control" placeholder="Type Message..." onkeypress="handleEnter(event)">
+                    <span class="input-group-append">
+                        <button type="button" class="btn btn-primary" onclick="sendMessage()">Send</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AdminLTE App -->
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+    
+    <script>
+        function toggleChat() {
+            var chatWindow = document.getElementById('chat-window');
+            if (chatWindow.style.display === 'none') {
+                chatWindow.style.display = 'block';
+            } else {
+                chatWindow.style.display = 'none';
+            }
+        }
+
+        function handleEnter(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            var input = document.getElementById('chat-input');
+            var message = input.value.trim();
+            if (message === '') return;
+
+            // Add User Message
+            addMessage('User', message, 'right');
+            input.value = '';
+
+            // Call API
+            fetch('/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ query: message }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                addMessage('AI', data.response, 'left');
+            })
+            .catch((error) => {
+                addMessage('System', 'Error: Could not reach server.', 'left');
+                console.error('Error:', error);
+            });
+        }
+
+        function addMessage(sender, text, side) {
+            var messages = document.getElementById('chat-messages');
+            var align = side === 'right' ? 'right' : 'left';
+            var bg = side === 'right' ? 'bg-primary' : 'bg-light';
+            var msgHtml = `
+                <div class="direct-chat-msg ${side}">
+                    <div class="direct-chat-infos clearfix">
+                        <span class="direct-chat-name float-${align}">${sender}</span>
+                    </div>
+                    <div class="direct-chat-text ${side === 'right' ? 'bg-primary text-white' : ''}" style="border-radius: 10px; padding: 5px 10px; display: inline-block; max-width: 80%; float: ${align}; margin-bottom: 5px;">
+                        ${text.replace(/\n/g, '<br>')}
+                    </div>
+                    <div class="clearfix"></div> 
+                </div>
+            `;
+            messages.insertAdjacentHTML('beforeend', msgHtml);
+            messages.scrollTop = messages.scrollHeight;
+        }
+    </script>
+  </body>
+</html>

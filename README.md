@@ -18,13 +18,13 @@ This application automates the workflow for analyzing sales data from an Indones
 1.  **Install Dependencies**:
 
     ```bash
-    pip install -r 3_Python/requirements.txt
+    pip install -r Python/requirements.txt
     ```
 
 2.  **Start the Application**:
 
     ```bash
-    python 3_Python/gui_app.py
+    python Python/gui_app.py
     ```
 
 3.  **Workflow**:
@@ -34,13 +34,13 @@ This application automates the workflow for analyzing sales data from an Indones
 
 ## Project Structure
 
-- `3_Python/gui_app.py`: The main GUI application for ETL.
-- `6_Dashboard/`: The Flask-based web dashboard.
+- `Python/gui_app.py`: The main GUI application for ETL.
+- `Dashboard/`: The Flask-based web dashboard.
   - `app.py`: Backend logic and API.
   - `analysis_engine.py`: Local AI logic for insights and chat.
   - `templates/index.html`: The Dashboard UI.
-- `4_MySQL/`: Database schema scripts (optional reference).
-- `8_Reports/`: Sample analysis reports.
+- `MySQL/`: Database schema scripts (optional reference).
+- `Reports/`: Sample analysis reports.
 
 ## Requirements
 
